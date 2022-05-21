@@ -13,13 +13,7 @@
     <?php include "meta.php"; ?>
 </head>
 <body>
-    <form method="POST" action="PHPMethods/signUp_script">
-        <label for="name">Imię</label>
-        <input type="text" name="name" id="name" required autocomplete="name">
-
-        <label for="surname">Nazwisko</label>
-        <input type="text" name="surname" id="surname" required autocomplete="surname">
-
+    <form method="POST" action="PHPMethods/signIn_script">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" required autocomplete="email">
 
@@ -27,15 +21,18 @@
         <!--Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character-->
         <input type="password" name="pass" id="pass" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$">
 
-        <label for="passRepeat">Powtórz hasło</label>
-        <input type="password" name="passRepeat" id="passRepeat" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$">
-
-        <input type="submit" value="Zarejestruj" name="submit">
+        <input type="submit" value="Zaloguj" name="submit">
         <?php
-            if(isset($_SESSION['signUp_error']))
+            if(isset($_SESSION['signUp_success']))
             {
-                echo $_SESSION['signUp_error'];
-                unset($_SESSION['signUp_error']);
+                echo $_SESSION['signUp_success'];
+                unset($_SESSION['signUp_success']);
+            }
+            
+            if(isset($_SESSION['signIn_error']))
+            {
+                echo $_SESSION['signIn_error'];
+                unset($_SESSION['signIn_error']);
             }
         ?>
     </form>
