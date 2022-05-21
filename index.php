@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <?php include "meta.php"; ?>
     <title>Witaj w Hoodbook | Twoje osiedle w jednym miejscu</title>
+    <?php include "meta.php"; ?>
 </head>
+
 <body class="bg-light">
     <div class="container">
         <div class="row">
@@ -21,4 +22,5 @@
         </div>
     </div>
 </body>
+
 </html>
