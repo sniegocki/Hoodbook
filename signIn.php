@@ -34,6 +34,12 @@
                 echo $_SESSION['signIn_error'];
                 unset($_SESSION['signIn_error']);
             }
+
+            if(isset($_SESSION['signOut_success']))
+            {
+                echo $_SESSION['signOut_success'];
+                unset($_SESSION['signOut_success']);
+            }
         ?>
     </form>
 </body>
