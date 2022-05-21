@@ -1,10 +1,10 @@
 <?php
 
-    $connect = @new mysqli('s110.linuxpl.com', 'nprofi15_santiego', '4g]N--hcf)-9MdGD', 'nprofi15_santiego');
+    $connect;
 
     try
     {
-        require "connect.php";
+        $connect = @new mysqli('santiego.eu', 'nprofi15_santiego', '4g]N--hcf)-9MdGD', 'nprofi15_santiego');
     }
     catch(Exception $e)
     {
