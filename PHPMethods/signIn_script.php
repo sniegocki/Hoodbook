@@ -40,6 +40,13 @@
                 exit(0);
             }
         }
+        else
+        {
+            $_SESSION['signIn_error'] = "Niepoprawne dane logowania";
+
+                header("Location: ../signIn");
+                exit(0);
+        }
     }
     else 
     {
