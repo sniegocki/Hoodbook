@@ -35,7 +35,6 @@
                         <?php
                             if (isset($_SESSION['signUp_success']))
                             {
-                                echo $_SESSION['signUp_success'];
 
                                 echo ('
                                     <div class="alert alert-success mt-3" role="alert" data-aos="fade-down">');
