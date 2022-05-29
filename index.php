@@ -36,7 +36,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Utwórz konto</a>
+                    <a class="nav-link" href="signUp">Utwórz konto</a>
                 </li>
 
                 <?php
@@ -44,7 +44,7 @@
                     {
                         echo ('
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Zaloguj się</a>
+                                <a class="nav-link" href="signIn">Zaloguj się</a>
                             </li>
                         ');
                     } else {
@@ -55,7 +55,7 @@
                             echo ('</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 <li><a class="dropdown-item" href="app">Kokpit</a></li>
-                                <li><a class="dropdown-item" href="#">Przeglądaj</a></li>
+                                <li><a class="dropdown-item" href="app">Przeglądaj</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="logout">Wyloguj się</a></li>
                             </ul>
@@ -168,7 +168,7 @@
                     <div class="col-12 col-lg-9">
                         <div class="d-flex justify-content-center align-items-center flex-wrap">
                             <h2 class="text-white">Nie zwlekaj! Zarejestruj się i przetestuj jak działa Hoodbook</h2>
-                            <a href="signup" class="cta-button ms-5">Rejestracja</a>
+                            <a href="signUp" class="cta-button ms-5">Rejestracja</a>
                         </div>
                     </div>
             
