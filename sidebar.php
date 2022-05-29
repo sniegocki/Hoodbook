@@ -58,9 +58,9 @@
           $avatar_path = "./img/avatars/" . $_SESSION['loggedUser'] . ".png";
 
           if (file_exists($avatar_path)) {
-              echo ('<img src="/szn/managment-system/img/avatars/'.$_SESSION['loggedUser'].'.png">');
+              echo ('<img src="img/avatars/'.$_SESSION['loggedUser'].'.png">');
           } else {
-              echo ('<img src="/szn/managment-system/img/avatars/avatar_placeholder.png">');
+              echo ('<img src="img/avatars/avatar_placeholder.png">');
           }
           ?>
           
