@@ -41,7 +41,7 @@
 
     <!-- Logout -->
     <li>
-      <a href="assets/logout.php">
+      <a href="logout.php">
       <i class='bx bx-log-out'></i>
         <span class="link_name">Wyloguj</span>
       </a>
