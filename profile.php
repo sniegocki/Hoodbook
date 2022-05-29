@@ -23,18 +23,18 @@
         unset($_SESSION['profileUserUpdateError']);
     }
 
-    if(isset($_SESSION['ProfileuserPassEditSuccess']))
+    if(isset($_SESSION['ProfileUserPassEditSuccess']))
     {
         //wyświetlenie tosta z sukcesem zmiany hasla
 
-        unset($_SESSION['ProfileuserPassEditSuccess']);
+        unset($_SESSION['ProfileUserPassEditSuccess']);
     }
 
-    if(isset($_SESSION['ProfileuserPassEditError']))
+    if(isset($_SESSION['ProfileUserPassEditError']))
     {
         //wyświetlenie tosta z bledem zmiany hasla
 
-        unset($_SESSION['ProfileuserPassEditError']);
+        unset($_SESSION['ProfileUserPassEditError']);
     }
 
     if(isset($_SESSION['profileEditAvatarError']))
