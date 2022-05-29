@@ -148,3 +148,10 @@
     background-color: var(--white);
     color: var(--color-accent-blue-dark);
 }
+
+/* PROFILE */
+
+.avatar-place img {
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
