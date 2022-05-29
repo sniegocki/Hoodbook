@@ -46,7 +46,7 @@
         <span class="link_name">Wyloguj</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name" href="assets/logout.php">Wyloguj</a></li>
+        <li><a class="link_name" href="logout">Wyloguj</a></li>
       </ul>
     </li>
 
