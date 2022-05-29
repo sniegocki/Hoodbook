@@ -74,9 +74,3 @@
   .font-accent {
     font-family: var(--font-accent);
   }
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
