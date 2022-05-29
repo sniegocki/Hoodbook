@@ -8,15 +8,21 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
     <head>
-        <title>App</title> 
+        <title>Hoodbook - Strona Główna, aplikacja do zarządzania osiedlem.</title> 
         <?php include "meta.php"; ?>
     </head>
+
     <body>
-        Zalogowany user: 
-        <?php
-            echo $_SESSION['loggedUser'];
-        ?>
+        <?php require "sidebar.php"; ?>
+        <section class="home-section">
+            <div class="home-content p-3 d-flex flex-column">
+                Zalogowany user: 
+                <?php
+                    echo $_SESSION['loggedUser'];
+                ?>
+            </div>
+        </section>
     </body>
 </html>

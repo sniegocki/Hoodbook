@@ -14,13 +14,18 @@
     --pure-white: #FFFFFF;
   
   
-    /* Colors https://color.adobe.com/pl/Royalty-color-theme-7499791 */
-    --color-primary-dark: #3264A6;
-    --color-primary: #55A6D9;
-    --color-primary-light: #A0E3F2;
-  
-    --color-accent-dark: #152B59;
-    --color-accent-light: #F25EB0;
+    /* Colors inherited form logo */
+    --color-primary: #F79755;
+    --color-primary-dark: #C5753E;
+
+    --color-secondary: #FF5770;
+    --color-secondary-dark: #BC4657;
+
+    --color-accent-green: #5CC0A3;
+    --color-accent-green-dark: #47957E;
+
+    --color-accent-blue: #3299CB;
+    --color-accent-blue-dark: #29799F;
   
   
     /* Fonts */

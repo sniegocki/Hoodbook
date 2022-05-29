@@ -8,7 +8,7 @@
     }
 
     //check if required data - name and surname was passsed 
-    if(!isset($_POST['userName']) || !isset($_POST['userName']))
+    if(!isset($_POST['userName']) || !isset($_POST['userSurname']))
     {
         header("Location: ../profile");
         exit(0);
