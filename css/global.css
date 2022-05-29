@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+:root {
+
+    /* Shades of B&W */
+    --black: #151515;
+    --dark-gray-dark: #333333;
+    --dark-gray: #4F4F4F;
+    --dark-gray-light: #828282;
+    --light-gray-dark: #BDBDBD;
+    --light-gray: #E0E0E0;
+    --light-gray-light: #F2F2F2;
+    --white: #F8F8F8;
+    --pure-white: #FFFFFF;
+  
+  
+    /* Colors inherited form logo */
+    --color-primary: #F79755;
+    --color-primary-dark: #C5753E;
+
+    --color-secondary: #FF5770;
+    --color-secondary-dark: #BC4657;
+
+    --color-accent-green: #5CC0A3;
+    --color-accent-green-dark: #47957E;
+
+    --color-accent-blue: #3299CB;
+    --color-accent-blue-dark: #29799F;
+  
+  
+    /* Fonts */
+    --font-primary: 'Roboto', sans-serif;
+    --font-secondary: 'Poppins', sans-serif;
+    --font-accent: 'Raleway', sans-serif;
+  
+  }
+  
+  /* Main Style Configuration */
+
+  html {
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 100%;
+  }
+  
+  p, b, i, ul, li, span, small, em {
+    color: var(--dark-gray-dark);
+  }
+  
+  h1 {
+    font-family: var(--font-secondary);
+    color: var(--dark-gray);
+  }
+  
+  h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    color: var(--dark-gray-dark);
+  }
+  
+  .dark-theme p, .dark-theme b, .dark-theme i, .dark-theme ul, .dark-theme li, .dark-theme span, .dark-theme small, .dark-theme em {
+    color: var(--light-gray-dark);
+  }
+  
+  .dark-theme h1 {
+    font-family: var(--font-secondary);
+    color: var(--white);
+  }
+  
+  .dark-theme h2, .dark-theme h3, .dark-theme h4, .dark-theme h5, .dark-theme h6 {
+    font-family: var(--font-secondary);
+    color: var(--light-gray-light);
+  }
+
+  .font-accent {
+    font-family: var(--font-accent);
+  }
