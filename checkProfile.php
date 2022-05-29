@@ -66,6 +66,13 @@
                         echo "<div class='avater-place'><img class='profile-avatar' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe'></div>";
                     }
                 }
+                else
+                {
+                    //Do wystylizowania PK
+                    //dodałbym jakis obrazek, że nie ma usera. Coś jak 404.
+                    //do tego przycisk "Powrót do aplikacji /app"
+                    echo "Taki użytkownik nie istnieje";
+                }
             }
             else
             {
