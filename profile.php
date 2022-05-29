@@ -66,8 +66,13 @@
 
     <?php require "sidebar.php"; ?>
 
-<section class="home-section">
-    <div class="home-content p-3 d-flex flex-column">
+<section class="home-section bg-light">
+    <div class="home-content p-3 justify-content-center">
+
+        <div class="col-12 col-md-8">
+            <div class="d-flex rounded shadow-sm">
+                <div class="col-4 d-flex justify-content-center p-3 bg-white">
+
         <!--User data-->
         <?php
             require "PHPMethods/connect.php";
@@ -89,29 +94,43 @@
                         $userPhone = $row['Phone'];
                         $userAddress = $row['Address'];
                         $userBirthday = $row['Birthday'];
-                        //User name
-                        echo "<p class='profile-name'>Imię: <span>" . $row['Name'] . "</span></p>";
-                        //User surname
-                        echo "<p class='profile-surname'>Nazwisko: <span>" . $row['Surname'] . "</span></p>";
-                        //User email
-                        echo "<p class='profile-email'>Email: <span>" . $row['Email'] . "</span></p>";
-                        //User phone
-                        echo "<p class='profile-phone'>Telefon: <span>" . $row['Phone'] . "</span></p>";
-                        //User address
-                        echo "<p class='profile-surname'>Adres: <span>" . $row['Address'] . "</span></p>";
-                        //User birthday
-                        echo "<p class='profile-birthday'>Urodziny: <span>" . $row['Birthday'] . "</span></p>"; 
+                        
                         //User avatar
                         $avatarPath = "img/avatars/" . $_SESSION['loggedUser'] . ".png";
 
-                        if(file_exists($avatarPath))
+                        if (file_exists($avatarPath))
                         {
-                            echo "<div class='avater-place'><img class='profile-avatar' src='" . $avatarPath . "' alt='Zdjęcie profilowe'></div>";
+                            echo "<div class='avatar-place'>
+                                <img class='img-fluid' src='" . $avatarPath . "' alt='Zdjęcie profilowe'>
+                            </div>";
                         }
                         else
                         {
-                            echo "<div class='avater-place'><img class='profile-avatar' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe'></div>";
+                            echo "<div class='avatar-place'>
+                                <img class='profile-avatar' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe'>
+                            </div>";
                         }
+
+                        echo '</div>';
+
+                        echo '<div class="col-8 d-flex flex-column justify-content-center fs-5 bg-white ps-3">';
+
+                            echo '<h4 class="mb-3">Profil użytkownika:</h4>';
+
+                            //User name
+                            echo "<p class='text-muted mb-1'>Imię: <span>" . $row['Name'] . "</span></p>";
+                            //User surname
+                            echo "<p class='text-muted mb-1'>Nazwisko: <span>" . $row['Surname'] . "</span></p>";
+                            //User email
+                            echo "<p class='text-muted mb-1'>E-mail: <span>" . $row['Email'] . "</span></p>";
+                            //User phone
+                            echo "<p class='text-muted mb-1'>Telefon: <span>" . $row['Phone'] . "</span></p>";
+                            //User address
+                            echo "<p class='text-muted mb-1'>Adres zamieszkania: <span>" . $row['Address'] . "</span></p>";
+                            //User birthday
+                            echo "<p class='text-muted mb-1'>Data urodzin: <span>" . $row['Birthday'] . "</span></p>"; 
+
+                        echo '</div>';
                     }
                 }
                 else
@@ -121,10 +140,13 @@
             }
         ?>
 
+        </div>
+    
+
 
 
         <!--User profile edit-->
-        <div class="profile-information-wrapper rounded shadow mt-3">
+        <div class="col-12 p-3 bg-white rounded shadow-sm mt-3">
             <h3 class="fs-5">Zaktualizuj informacje</h3>
             <hr>
             <div class="profile-button-wrapper">
@@ -133,6 +155,8 @@
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editavatar">Zmień awatar</button>
                 <!--<a href="bug-reports.php"><button class="btn btn-danger">Zgłoś błąd</button></a>-->
             </div>
+        </div>
+
         </div>
 
         <!--Edit modals-->
@@ -227,11 +251,11 @@
 
                         if(file_exists($avatarPath))
                         {
-                            echo "<div class='avater-place'><img class='profile-avatar' src='" . $avatarPath . "' alt='Zdjęcie profilowe'></div>";
+                            echo "<div class='avatar-place'><img class='img-fluid' src='" . $avatarPath . "' alt='Zdjęcie profilowe'></div>";
                         }
                         else
                         {
-                            echo "<div class='avater-place'><img class='profile-avatar' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe'></div>";
+                            echo "<div class='avatar-place'><img class='img-fluid' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe'></div>";
                         }
                     ?>
 
