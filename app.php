@@ -8,11 +8,12 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
     <head>
-        <title>App</title> 
+        <title>Hoodbook - Strona Główna, aplikacja do zarządzania osiedlem.</title> 
         <?php include "meta.php"; ?>
     </head>
+
     <body>
         Zalogowany user: 
         <?php
