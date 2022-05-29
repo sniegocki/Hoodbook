@@ -63,107 +63,117 @@
     <?php include "meta.php"; ?>
 </head>
 <body>
-    <!--User data-->
-    <?php
-        require "PHPMethods/connect.php";
 
-        //get user profile data
-        if(!$connect->connect_error)
-        {
-            $sql = "SELECT * FROM Users WHERE Id=" . $_SESSION['loggedUser'] . ";";
+    <?php require "sidebar.php"; ?>
 
-            if($result = $connect->query($sql))
+<section class="home-section">
+    <div class="home-content p-3 d-flex flex-column">
+        <!--User data-->
+        <?php
+            require "PHPMethods/connect.php";
+            
+
+            //get user profile data
+            if(!$connect->connect_error)
             {
-                if($result->num_rows == 1)
-                {
-                    $row = $result->fetch_assoc();
-                    $userName = $row['Name'];
-                    $userSurname = $row['Surname'];
-                    $userEmail = $row['Email'];
-                    $userPhone = $row['Phone'];
-                    $userAddress = $row['Address'];
-                    $userBirthday = $row['Birthday'];
-                    //User name
-                    echo "<p class='profile-name'>Imię: <span>" . $row['Name'] . "</span></p>";
-                    //User surname
-                    echo "<p class='profile-surname'>Nazwisko: <span>" . $row['Surname'] . "</span></p>";
-                    //User email
-                    echo "<p class='profile-email'>Email: <span>" . $row['Email'] . "</span></p>";
-                    //User phone
-                    echo "<p class='profile-phone'>Telefon: <span>" . $row['Phone'] . "</span></p>";
-                    //User address
-                    echo "<p class='profile-surname'>Adres: <span>" . $row['Address'] . "</span></p>";
-                    //User birthday
-                    echo "<p class='profile-birthday'>Urodziny: <span>" . $row['Birthday'] . "</span></p>"; 
-                    //User avatar
-                    $avatarPath = "img/avatars/" . $_SESSION['loggedUser'] . ".png";
+                $sql = "SELECT * FROM Users WHERE Id=" . $_SESSION['loggedUser'] . ";";
 
-                    if(file_exists($avatarPath))
+                if($result = $connect->query($sql))
+                {
+                    if($result->num_rows == 1)
                     {
-                        echo "<div class='avater-place'><img class='profile-avatar' src='" . $avatarPath . "' alt='Zdjęcie profilowe'></div>";
-                    }
-                    else
-                    {
-                        echo "<div class='avater-place'><img class='profile-avatar' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe'></div>";
+                        $row = $result->fetch_assoc();
+                        $userName = $row['Name'];
+                        $userSurname = $row['Surname'];
+                        $userEmail = $row['Email'];
+                        $userPhone = $row['Phone'];
+                        $userAddress = $row['Address'];
+                        $userBirthday = $row['Birthday'];
+                        //User name
+                        echo "<p class='profile-name'>Imię: <span>" . $row['Name'] . "</span></p>";
+                        //User surname
+                        echo "<p class='profile-surname'>Nazwisko: <span>" . $row['Surname'] . "</span></p>";
+                        //User email
+                        echo "<p class='profile-email'>Email: <span>" . $row['Email'] . "</span></p>";
+                        //User phone
+                        echo "<p class='profile-phone'>Telefon: <span>" . $row['Phone'] . "</span></p>";
+                        //User address
+                        echo "<p class='profile-surname'>Adres: <span>" . $row['Address'] . "</span></p>";
+                        //User birthday
+                        echo "<p class='profile-birthday'>Urodziny: <span>" . $row['Birthday'] . "</span></p>"; 
+                        //User avatar
+                        $avatarPath = "img/avatars/" . $_SESSION['loggedUser'] . ".png";
+
+                        if(file_exists($avatarPath))
+                        {
+                            echo "<div class='avater-place'><img class='profile-avatar' src='" . $avatarPath . "' alt='Zdjęcie profilowe'></div>";
+                        }
+                        else
+                        {
+                            echo "<div class='avater-place'><img class='profile-avatar' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe'></div>";
+                        }
                     }
                 }
+                else
+                {
+                    echo "Database query error has occurred";
+                }
             }
-            else
-            {
-                echo "Database query error has occurred";
-            }
-        }
-    ?>
+        ?>
 
-    <!--User profile edit-->
-    <div class="profile-information-wrapper rounded shadow mt-3">
-        <h3 class="fs-5">Zaktualizuj informacje</h3>
-        <hr>
-        <div class="profile-button-wrapper">
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editinfo">Edytuj informacje</button>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editpass">Zmień hasło</button>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editavatar">Zmień awatar</button>
-            <!--<a href="bug-reports.php"><button class="btn btn-danger">Zgłoś błąd</button></a>-->
+
+
+        <!--User profile edit-->
+        <div class="profile-information-wrapper rounded shadow mt-3">
+            <h3 class="fs-5">Zaktualizuj informacje</h3>
+            <hr>
+            <div class="profile-button-wrapper">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editinfo">Edytuj informacje</button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editpass">Zmień hasło</button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editavatar">Zmień awatar</button>
+                <!--<a href="bug-reports.php"><button class="btn btn-danger">Zgłoś błąd</button></a>-->
+            </div>
         </div>
-    </div>
 
-    <!--Edit modals-->
-    <!-- Edit User Modal -->
-    <div class="modal fade" id="editinfo" tabindex="-1" aria-labelledby="editinfo" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editinfo">Edytuj informacje</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body">
-                    <form action="PHPMethods/profileEdit_script" method="POST">
-                    <label for="userName" class="form-label mb-1 mt-3">Imię: </label>
-                    <input type="text" max="60" name="userName" id="userName" class="form-control" value="<?php echo $userName; ?>" autocomplete="off" required>
-
-                    <label for="userSurname" class="form-label mb-1 mt-3">Nazwisko: </label>
-                    <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="<?php echo $userSurname; ?>" autocomplete="off" required>
-
-                    <label for="userPhone" class="form-label mb-1 mt-3">Telefon: </label>
-                    <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="<?php echo $userPhone; ?>" autocomplete="off">
-
-                    <label for="userAddress" class="form-label mb-1 mt-3">Adres: </label>
-                    <input type="text" max="60" name="userAddress" id="userAddress" class="form-control" value="<?php echo $userAddress; ?>" autocomplete="off">
-
-                    <label for="userBirthday" class="form-label mb-1 mt-3">Urodziny: </label>
-                    <input type="date" max="60" name="userBirthday" id="userBirthday" class="form-control" value="<?php echo $userBirthday; ?>" autocomplete="off">
+        <!--Edit modals-->
+        <!-- Edit User Modal -->
+        <div class="modal fade" id="editinfo" tabindex="-1" aria-labelledby="editinfo" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editinfo">Edytuj informacje</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                     
-                </div>
+                    <div class="modal-body">
+                        <form action="PHPMethods/profileEdit_script" method="POST">
+                        <label for="userName" class="form-label mb-1 mt-3">Imię: </label>
+                        <input type="text" max="60" name="userName" id="userName" class="form-control" value="<?php echo $userName; ?>" autocomplete="off" required>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">Anuluj</button>
-                    <button type="submit" name="editUser" class="btn btn-success">Zapisz zmiany</button>
-                    </form>
+                        <label for="userSurname" class="form-label mb-1 mt-3">Nazwisko: </label>
+                        <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="<?php echo $userSurname; ?>" autocomplete="off" required>
+
+                        <label for="userPhone" class="form-label mb-1 mt-3">Telefon: </label>
+                        <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="<?php echo $userPhone; ?>" autocomplete="off">
+
+                        <label for="userAddress" class="form-label mb-1 mt-3">Adres: </label>
+                        <input type="text" max="60" name="userAddress" id="userAddress" class="form-control" value="<?php echo $userAddress; ?>" autocomplete="off">
+
+                        <label for="userBirthday" class="form-label mb-1 mt-3">Urodziny: </label>
+                        <input type="date" max="60" name="userBirthday" id="userBirthday" class="form-control" value="<?php echo $userBirthday; ?>" autocomplete="off">
+                        
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">Anuluj</button>
+                        <button type="submit" name="editUser" class="btn btn-success">Zapisz zmiany</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
     <!-- Edit Password Modal -->
     <div class="modal fade" id="editpass" tabindex="-1" aria-labelledby="editpass" aria-hidden="true">

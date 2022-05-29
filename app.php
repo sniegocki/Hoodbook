@@ -15,9 +15,14 @@
     </head>
 
     <body>
-        Zalogowany user: 
-        <?php
-            echo $_SESSION['loggedUser'];
-        ?>
+        <?php require "sidebar.php"; ?>
+        <section class="home-section">
+            <div class="home-content p-3 d-flex flex-column">
+                Zalogowany user: 
+                <?php
+                    echo $_SESSION['loggedUser'];
+                ?>
+            </div>
+        </section>
     </body>
 </html>
