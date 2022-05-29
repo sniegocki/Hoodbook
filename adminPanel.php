@@ -40,6 +40,38 @@
 
         unset($_SESSION['profileUserUpdateError']);
     }
+
+    if(isset($_SESSION['ProfileUserPassEditSuccess']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['ProfileUserPassEditSuccess'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['ProfileUserPassEditSuccess']);
+    }
+
+    if(isset($_SESSION['ProfileUserPassEditError']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['ProfileUserPassEditError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['ProfileUserPassEditError']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -109,6 +141,7 @@
                     }
                     echo "</td>";
                     echo "<td class='no-sql'><button class='btn btn-primary editUserBtn no-sql' data-bs-toggle='modal' data-bs-target='#editinfo'>Edytuj informacje</button></td>"; 
+                    echo "<td class='no-sql'><button class='btn btn-primary editUserPassBtn no-sql' data-bs-toggle='modal' data-bs-target='#editpass'>Zmień hasło</button></td>"; 
                     
                 }
             }
@@ -131,7 +164,7 @@
                 <div class="modal-body">
                     <form action="PHPMethods/AdminMethods/editUserData_script" method="POST">
                     <label for="userId" class="form-label mb-1 mt-3" style="display: none;">Id: </label>
-                    <input type="text" max="60" name="userId" id="userId" class="form-control" value="" autocomplete="off" required style="display: none;">
+                    <input type="text" max="60" name="userId" id="userId" class="form-control" value="" autocomplete="off" required style="display: none;" required>
 
                     <label for="userEmail" class="form-label mb-1 mt-3">Email: </label>
                     <input type="text" max="60" name="userEmail" id="userEmail" class="form-control" value="" autocomplete="off" required>
@@ -169,12 +202,44 @@
         </div>
     </div>
 
-    <script>
-        //Edit user data modal 
-        window.addEventListener("DOMContentLoaded", () => {
-            let editBtn = document.querySelectorAll(".editUserBtn");
+    <!-- Edit Password Modal -->
+    <div class="modal fade" id="editpass" tabindex="-1" aria-labelledby="editpass" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editpass">Edytuj hasło</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <form action="PHPMethods/AdminMethods/editUserPass_script" method="POST" id="changepass">
+                    
+                    <p class="text-muted">Hasło powinno zawierać 8-10 znaków. Minimum 1 duża litera, 1 mała litera, 1 cyfra i 1 znak specjalny</p>
+                    <input type="text" value="" name="userId" style="display: none;" id="modalUserId">
 
-            editBtn.forEach(o => {
+                    <label for="pass" class="form-label">Nowe hasło:</label>
+                    <input type="password" name="pass" id="pass" class="form-control" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$">
+
+                    <label for="passRepeat" class="form-label mt-3">Powtórz hasło:</label>
+                    <input type="password" name="passRepeat" id="passRepeat" class="form-control" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$">
+
+                    <div class="invalid-feedback mt-4" id="errormsg"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Anuluj</button>
+                    <button type="submit" name="editUser" onclick="validate()" class="btn btn-success">Zapisz zmiany</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            //Edit user data modal =>
+            document.querySelectorAll(".editUserBtn").forEach(o => {
                 o.addEventListener("click", ()=> {
                     let e = o.parentNode.parentNode.querySelectorAll("*:not(.no-sql)");
                     var values = [];
@@ -189,7 +254,6 @@
                     {
                         if(i == values.length - 1)
                         {
-                            console.log(i);
                             switch(values[i])
                             {
                                 case "Zbanowany":
@@ -209,15 +273,27 @@
                     }
                 });
             });
-        });  
+            //<=Edit user data modal 
 
-        //Toast
-        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-        var toastList = toastElList.map(function (toastEl) {
-            // Creates an array of toasts (it only initializes them)
-            return new bootstrap.Toast(toastEl) // No need for options; use the default options
-        });
-        toastList.forEach(toast => toast.show()); // This show them
+            //Edit user pass modal =>
+            document.querySelectorAll(".editUserPassBtn").forEach((o) => {
+                o.addEventListener("click", () => {
+                    let e = o.parentNode.parentNode.querySelector("*:first-child");
+
+                    document.querySelector("#editpass #modalUserId").value = e.outerText;
+                });
+            });
+            //<=Edit user pass modal
+
+            //Toast=>
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+            var toastList = toastElList.map(function (toastEl) {
+                // Creates an array of toasts (it only initializes them)
+                return new bootstrap.Toast(toastEl) // No need for options; use the default options
+            });
+            toastList.forEach(toast => toast.show()); // This show them
+            });  
+            //<=Toast
     </script>
 </body>
 </html>

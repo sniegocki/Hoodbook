@@ -1,16 +1,9 @@
 <?php
-
     @session_start();
 
-    if(!isset($_SESSION['loggedUser']))
+    if(!isset($_SESSION['loggedUser']) || $_SESSION['permission'] != 2)
     {
         header("Location: ../app");
-        exit(0);
-    }
-
-    if(!isset($_POST['pass']) || !isset($_POST['passRepeat']))
-    {
-        header("Location: ../profile");
         exit(0);
     }
 
@@ -21,12 +14,13 @@
         exit(0);
     }
 
-    require "connect.php";
+    require "../connect.php";
 
+    //update user data
     if(!$connect->connect_error)
     {
         $passHash = password_hash($_POST['pass'], PASSWORD_BCRYPT);
-        $sql = "UPDATE UsersAccount SET Password='" . $passHash . "' WHERE Id=" . $_SESSION['loggedUser'] . ";";
+        $sql = "UPDATE UsersAccount SET Password='" . $passHash . "' WHERE Id=" . $_POST['userId'] . ";";
         
         try
         {
@@ -42,7 +36,8 @@
     else
     {
         echo "Database connection error";
+        $_SESSION['profileUserUpdateError'] = "Nie udało się zaktualizować danych użytkownika o ID: " . $_POST['userId'];
     }
 
-    header("Location: ../profile");
+    header("Location: ../../adminPanel");
 ?>
