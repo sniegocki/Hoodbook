@@ -7,10 +7,43 @@
         header("Location: app");
         exit(0);
     }
+
+    //prompt success or error status
+    if(isset($_SESSION['profileUserUpdateSuccess']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['profileUserUpdateSuccess'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['profileUserUpdateSuccess']);
+    }
+
+    if(isset($_SESSION['profileUserUpdateError']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['profileUserUpdateError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['profileUserUpdateError']);
+    }
 ?>
 
 <!DOCTYPE html>
-<html lang="pl">
+<html lang='pl'>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,8 +53,6 @@
     
 </head>
 <body>
-    
-    
     <h2>Użytkownicy</h2>
     <?php
         require "PHPMethods/connect.php";
@@ -55,7 +86,7 @@
                 {
                     echo "<tr>";
 
-                    echo "<td class='no-sql'>" . $row['Id'] . "</td>";
+                    echo "<td>" . $row['Id'] . "</td>";
                     echo "<td>" . $row['Email'] . "</td>";
                     echo "<td>" . $row['Name'] . "</td>";
                     echo "<td>" . $row['Surname'] . "</td>";
@@ -98,7 +129,10 @@
                 </div>
                 
                 <div class="modal-body">
-                    <form action="PHPMethods/profileEdit_script" method="POST">
+                    <form action="PHPMethods/AdminMethods/editUserData_script" method="POST">
+                    <label for="userId" class="form-label mb-1 mt-3" style="display: none;">Id: </label>
+                    <input type="text" max="60" name="userId" id="userId" class="form-control" value="" autocomplete="off" required style="display: none;">
+
                     <label for="userEmail" class="form-label mb-1 mt-3">Email: </label>
                     <input type="text" max="60" name="userEmail" id="userEmail" class="form-control" value="" autocomplete="off" required>
 
@@ -117,7 +151,7 @@
                     <label for="userBirthday" class="form-label mb-1 mt-3">Urodziny: </label>
                     <input type="date" max="60" name="userBirthday" id="userBirthday" class="form-control" value="" autocomplete="off">
 
-                    <label for="userPermission" class="form-label mb-1 mt-3">Imię: </label>
+                    <label for="userPermission" class="form-label mb-1 mt-3">Uprawnienia: </label>
                     <select type="text" max="60" name="userPermission" id="userPermission" class="form-control" value="" autocomplete="off" required>
                         <option value="0">Zbanowany</option>
                         <option value="1">Użytkownik</option>
@@ -136,6 +170,7 @@
     </div>
 
     <script>
+        //Edit user data modal 
         window.addEventListener("DOMContentLoaded", () => {
             let editBtn = document.querySelectorAll(".editUserBtn");
 
@@ -147,19 +182,14 @@
                         values.push(ee.outerText);
                     });
                     
-                    var modalInputs = document.querySelectorAll("#editinfo input, option");
-                    //modalInputs.push(document.querySelector("#editinfo option"));
+                    var modalInputs = document.querySelectorAll("#editinfo input, select");
                     
-                    //assign values to inputs
-                    console.log(e);
-                    console.log(modalInputs)
-                    console.log(values);
-                    
+                    //assign values to inputs            
                     for(let i = 0; i < values.length; i++)
                     {
-                        console.log("Modal: " + modalInputs[i].value + " value: " + values[i]);
                         if(i == values.length - 1)
                         {
+                            console.log(i);
                             switch(values[i])
                             {
                                 case "Zbanowany":
@@ -176,11 +206,18 @@
                         else
                             modalInputs[i].value = values[i];
 
-                        console.log("Modal: " + modalInputs[i].value + " value: " + values[i]);
                     }
                 });
             });
         });  
+
+        //Toast
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+            // Creates an array of toasts (it only initializes them)
+            return new bootstrap.Toast(toastEl) // No need for options; use the default options
+        });
+        toastList.forEach(toast => toast.show()); // This show them
     </script>
 </body>
 </html>
