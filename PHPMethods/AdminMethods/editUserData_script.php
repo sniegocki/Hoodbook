@@ -24,7 +24,7 @@
         }
         if(isset($_POST['userBirthday']))
         {
-            if($_POST['userBirthday'] = "")
+            if($_POST['userBirthday'] == "")
                 $sql .= ", Birthday=null";
             else
                 $sql .= ", Birthday='" . $_POST['userBirthday'] . "'";

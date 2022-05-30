@@ -2,11 +2,6 @@
     //check passed data if exists
     if(!isset($_POST['name']) || !isset($_POST['surname']) || !isset($_POST['email']) || !isset($_POST['pass']) || !isset($_POST['passRepeat']))
     {
-        $previous = "javascript:history.go(-1)";
-        if(isset($_SERVER['HTTP_REFERER'])) {
-            $previous = $_SERVER['HTTP_REFERER'];
-        }
-
         header("Location: ../signUp");
         exit(0);
     }
