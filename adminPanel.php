@@ -86,6 +86,7 @@
 </head>
 <body>
     <h2>Użytkownicy</h2>
+    <button class='btn btn-primary no-sql' data-bs-toggle='modal' data-bs-target='#adduser'>Dodaj użytkownika</button>
     <?php
         require "PHPMethods/connect.php";
 
@@ -196,6 +197,61 @@
                 <div class="modal-footer">
                     <button type="button" class="btn" data-bs-dismiss="modal">Anuluj</button>
                     <button type="submit" name="editUser" class="btn btn-success">Zapisz zmiany</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="adduser" tabindex="-1" aria-labelledby="adduser" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editinfo">Stwórz użytkownika</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <form action="PHPMethods/AdminMethods/addUser_script" method="POST">
+
+                    <label for="userEmail" class="form-label mb-1 mt-3">Email: </label>
+                    <input type="text" max="60" name="userEmail" id="userEmail" class="form-control" value="" autocomplete="off" required>
+
+                    <label for="userName" class="form-label mb-1 mt-3">Imię: </label>
+                    <input type="text" max="60" name="userName" id="userName" class="form-control" value="" autocomplete="off" required>
+
+                    <label for="userSurname" class="form-label mb-1 mt-3">Nazwisko: </label>
+                    <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="" autocomplete="off" required>
+
+                    <label for="userPhone" class="form-label mb-1 mt-3">Telefon: </label>
+                    <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="" autocomplete="off">
+
+                    <label for="userAddress" class="form-label mb-1 mt-3">Adres: </label>
+                    <input type="text" max="60" name="userAddress" id="userAddress" class="form-control" value="" autocomplete="off">
+
+                    <label for="userBirthday" class="form-label mb-1 mt-3">Urodziny: </label>
+                    <input type="date" max="60" name="userBirthday" id="userBirthday" class="form-control" value="" autocomplete="off">
+
+                    <label for="userPermission" class="form-label mb-1 mt-3">Uprawnienia: </label>
+                    <select type="text" max="60" name="userPermission" id="userPermission" class="form-control" value="" autocomplete="off" required>
+                        <option value="0">Zbanowany</option>
+                        <option value="1">Użytkownik</option>
+                        <option value="2">Administrator</option>
+                    </select>
+
+                    <label for="pass" class="form-label mt-4">Hasło:</label>
+                    <!--Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character-->
+                    <input type="password" name="pass" id="pass" class="form-control" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$">
+
+                    <label for="passRepeat" class="form-label mt-3 mb-2">Powtórz hasło:</label>
+                    <input type="password" name="passRepeat" class="form-control" id="passRepeat" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$">
+                    
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Anuluj</button>
+                    <button type="submit" name="adduserSubmit" class="btn btn-success">Zapisz zmiany</button>
                     </form>
                 </div>
             </div>
