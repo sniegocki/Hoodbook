@@ -69,7 +69,7 @@
 <section class="home-section bg-light">
     <div class="home-content p-3 justify-content-center">
 
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-lg-10 col-xl-8">
             <div class="d-flex rounded flex-wrap shadow-sm">
                 <div class="col-12 col-lg-4 d-flex justify-content-center p-3 bg-white">
 
@@ -113,22 +113,22 @@
 
                         echo '</div>';
 
-                        echo '<div class="col-12 col-lg-8 d-flex flex-column justify-content-center fs-5 bg-white ps-3">';
+                        echo '<div class="col-12 col-lg-8 d-flex flex-column justify-content-center fs-5 bg-white px-3">';
 
                             echo '<h4 class="mb-3">Profil użytkownika:</h4>';
 
                             //User name
-                            echo "<p class='text-muted mb-1'>Imię: <span>" . $row['Name'] . "</span></p>";
+                            echo "<p class='text-muted mb-1 pb-2 border-bottom'>Imię: <span>" . $row['Name'] . "</span></p>";
                             //User surname
-                            echo "<p class='text-muted mb-1'>Nazwisko: <span>" . $row['Surname'] . "</span></p>";
+                            echo "<p class='text-muted mb-1 pb-2 border-bottom'>Nazwisko: <span>" . $row['Surname'] . "</span></p>";
                             //User email
-                            echo "<p class='text-muted mb-1'>E-mail: <span>" . $row['Email'] . "</span></p>";
+                            echo "<p class='text-muted mb-1 pb-2 border-bottom'>E-mail: <span>" . $row['Email'] . "</span></p>";
                             //User phone
-                            echo "<p class='text-muted mb-1'>Telefon: <span>" . $row['Phone'] . "</span></p>";
+                            echo "<p class='text-muted mb-1 pb-2 border-bottom'>Telefon: <span>" . $row['Phone'] . "</span></p>";
                             //User address
-                            echo "<p class='text-muted mb-1'>Adres zamieszkania: <span>" . $row['Address'] . "</span></p>";
+                            echo "<p class='text-muted mb-1 pb-2 border-bottom'>Adres zamieszkania: <span>" . $row['Address'] . "</span></p>";
                             //User birthday
-                            echo "<p class='text-muted mb-1'>Data urodzin: <span>" . $row['Birthday'] . "</span></p>"; 
+                            echo "<p class='text-muted mb-1 pb-2'>Data urodzin: <span>" . $row['Birthday'] . "</span></p>"; 
 
                         echo '</div>';
                     }
