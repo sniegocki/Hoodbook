@@ -70,8 +70,8 @@
     <div class="home-content p-3 justify-content-center">
 
         <div class="col-12 col-md-8">
-            <div class="d-flex rounded shadow-sm">
-                <div class="col-4 d-flex justify-content-center p-3 bg-white">
+            <div class="d-flex rounded flex-wrap shadow-sm">
+                <div class="col-12 col-lg-4 d-flex justify-content-center p-3 bg-white">
 
         <!--User data-->
         <?php
@@ -113,7 +113,7 @@
 
                         echo '</div>';
 
-                        echo '<div class="col-8 d-flex flex-column justify-content-center fs-5 bg-white ps-3">';
+                        echo '<div class="col-12 col-lg-8 d-flex flex-column justify-content-center fs-5 bg-white ps-3">';
 
                             echo '<h4 class="mb-3">Profil użytkownika:</h4>';
 
