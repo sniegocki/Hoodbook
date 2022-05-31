@@ -21,8 +21,50 @@
       <ul class="sub-menu blank">
         <li><a class="link_name" href="app">Kokpit</a></li>
       </ul>
-
     </li>
+     
+    <!-- Osiedle -->
+    <li>
+      <div class="iocn-link">
+        <a>
+          <i class='bx bxs-buildings' ></i>
+          <span class="link_name">Moje osiedle</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Moje osiedle</a></li>
+        <li><a href="#">Przegląd</a></li>
+        <li><a href="#">Posty</a></li>
+      </ul>
+    </li>
+
+    <!-- Administracja -->
+    <?php
+    if($_SESSION['permission'] == 2) {
+     echo ('
+     <li>
+        <div class="iocn-link">
+          <a>
+            <i class="bx bx-shield-quarter"></i>
+            <span class="link_name">Administracja</span>
+          </a>
+          <i class="bx bxs-chevron-down arrow"></i>
+        </div>
+
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Administracja</a></li>
+          <li><a href="adminPanel">Panel administratora</a></li>
+          <li><a href="#">Zarządzaj użytkownikami</a></li>
+          <li><a href="#">Zarządzaj osiedlami</a></li>
+          <li><a href="#">Przeglądaj zgłoszenia</a></li>
+        </ul>
+      </li>
+     ');
+    }
+    ?>
+    
 
     <!-- Profil -->
     <li>
@@ -34,19 +76,17 @@
       <ul class="sub-menu blank">
         <li><a class="link_name" href="app">Mój profil</a></li>
       </ul>
-
     </li>
-     
 
 
     <!-- Logout -->
     <li>
-      <a href="assets/logout.php">
+      <a href="logout.php">
       <i class='bx bx-log-out'></i>
         <span class="link_name">Wyloguj</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name" href="assets/logout.php">Wyloguj</a></li>
+        <li><a class="link_name" href="logout">Wyloguj</a></li>
       </ul>
     </li>
 
@@ -75,3 +115,5 @@
     </li>
   </ul><!-- END OF NAVBAR -->
 </div>
+
+<script src="js/sidebar.js"></script>
