@@ -155,3 +155,13 @@
     object-fit: cover;
     aspect-ratio: 1/1;
   }
+
+ /* TOASTS */
+
+ .bg-toast-success {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(225deg, #21E9A5 0%, #1FAF7F 100%);
+ }
+
+ .bg-toast-error {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(225deg, #e92121 0%, #921212 100%);
+ }
