@@ -85,10 +85,18 @@
     
 </head>
 <body>
-    <h2>Użytkownicy</h2>
-    <button class='btn btn-primary no-sql' data-bs-toggle='modal' data-bs-target='#adduser'>Dodaj użytkownika</button>
+<section class="home-section bg-light">
+    <div class="home-content p-3 justify-content-center">
+
+        <div class="col-12">
+            <div class="d-flex rounded flex-wrap shadow-sm">
+                <div class="col-12 col-lg-12 p-3 bg-white">
+
+
+    <button class='btn btn-success no-sql mb-3' data-bs-toggle='modal' data-bs-target='#adduser'>Dodaj użytkownika</button>
     <?php
         require "PHPMethods/connect.php";
+        require "sidebar.php";
 
         if(!$connect->connect_error)
         {
@@ -100,7 +108,7 @@
             if($result->num_rows > 0)
             {
                 echo <<< TABLE
-                    <table style='users'>
+                    <table class='table'>
                         <tr>
                             <th>Id</th>
                             <th>Email</th>
@@ -117,6 +125,17 @@
 
                 while($row = $result->fetch_assoc())
                 {
+
+                    $userId = $row['Id'];
+                    $userEmail = $row['Email'];
+                    $userName = $row['Name'];
+                    $userSurname = $row['Surname'];
+                    $userPhone = $row['Phone'];
+                    $userAddress = $row['Address'];
+                    $userBirthday = $row['Birthday'];
+                    $userCreationDate = $row['CreationDate'];
+                    $user = $row['Permission'];
+
                     echo "<tr>";
 
                     echo "<td>" . $row['Id'] . "</td>";
@@ -141,9 +160,10 @@
                             break;
                     }
                     echo "</td>";
-                    echo "<td class='no-sql'><button class='btn btn-primary editUserBtn no-sql' data-bs-toggle='modal' data-bs-target='#editinfo'>Edytuj informacje</button></td>"; 
-                    echo "<td class='no-sql'><button class='btn btn-primary editUserPassBtn no-sql' data-bs-toggle='modal' data-bs-target='#editpass'>Zmień hasło</button></td>"; 
-                    
+                    echo "<td class='no-sql'>
+                        <button class='btn btn-secondary no-sql' data-bs-toggle='modal' data-bs-target='#editinfo'>Edytuj informacje</button>
+                        <button class='btn btn-secondary no-sql' data-bs-toggle='modal' data-bs-target='#editpass'>Zmień hasło</button>
+                        </td>"; 
                 }
             }
         }
@@ -152,6 +172,11 @@
             echo "Błąd w połączeniu z bazą danych";
         }
     ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Edit User Modal -->
     <div class="modal fade" id="editinfo" tabindex="-1" aria-labelledby="editinfo" aria-hidden="true">
