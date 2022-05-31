@@ -41,23 +41,30 @@
     </li>
 
     <!-- Administracja -->
-    <li>
-      <div class="iocn-link">
-        <a>
-          <i class='bx bx-shield-quarter' ></i>
-          <span class="link_name">Administracja</span>
-        </a>
-        <i class="bx bxs-chevron-down arrow"></i>
-      </div>
+    <?php
+    if($_SESSION['permission'] == 2) {
+     echo ('
+     <li>
+        <div class="iocn-link">
+          <a>
+            <i class="bx bx-shield-quarter"></i>
+            <span class="link_name">Administracja</span>
+          </a>
+          <i class="bx bxs-chevron-down arrow"></i>
+        </div>
 
-      <ul class="sub-menu">
-        <li><a class="link_name" href="#">Administracja</a></li>
-        <li><a href="adminPanel">Panel administratora</a></li>
-        <li><a href="#">Zarządzaj użytkownikami</a></li>
-        <li><a href="#">Zarządzaj osiedlami</a></li>
-        <li><a href="#">Przeglądaj zgłoszenia</a></li>
-      </ul>
-    </li>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Administracja</a></li>
+          <li><a href="adminPanel">Panel administratora</a></li>
+          <li><a href="#">Zarządzaj użytkownikami</a></li>
+          <li><a href="#">Zarządzaj osiedlami</a></li>
+          <li><a href="#">Przeglądaj zgłoszenia</a></li>
+        </ul>
+      </li>
+     ');
+    }
+    ?>
+    
 
     <!-- Profil -->
     <li>
