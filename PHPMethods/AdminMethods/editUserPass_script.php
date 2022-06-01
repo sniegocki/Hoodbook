@@ -9,8 +9,8 @@
 
     if($_POST['pass'] != $_POST['passRepeat'])
     {
-        $_SESSION['profileEditPassError'] = "Hasła muszą byż zgodne";
-        header("Location: ../profile");
+        $_SESSION['ProfileUserPassEditError'] = "Hasła muszą byż zgodne";
+        header("Location: ../../adminPanelUsers");
         exit(0);
     }
 
@@ -25,7 +25,7 @@
         try
         {
             $connect->query($sql);
-            $_SESSION['ProfileUserPassEditSuccess'] = "Hasło zostało zaktualizowane";
+            $_SESSION['ProfileUserPassEditSuccess'] = "Hasło użytkownika o ID: " . $_POST['userId'] . " zostało zaktualizowane.";
         }
         catch(Exception $e)
         {
@@ -39,5 +39,5 @@
         $_SESSION['profileUserUpdateError'] = "Nie udało się zaktualizować danych użytkownika o ID: " . $_POST['userId'];
     }
 
-    header("Location: ../../adminPanel");
+    header("Location: ../../adminPanelUsers");
 ?>
