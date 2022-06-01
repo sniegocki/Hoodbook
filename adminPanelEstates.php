@@ -40,6 +40,38 @@
 
         unset($_SESSION['addEstateError']);
     }
+
+    if(isset($_SESSION['editEstateSuccess']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['editEstateSuccess'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['editEstateSuccess']);
+    }
+
+    if(isset($_SESSION['editEstateError']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['editEstateError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['editEstateError']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +102,7 @@
         {
             //Estates table
             $sql = "SELECT Estates.Id, Estates.Name, Estates.Street, Estates.ZipCode, Estates.City, Estates.Country, Estates.CreationDate, count(Estates_Users.IdUser) AS UsersCount FROM Estates JOIN Estates_Users ON Estates.Id=Estates_Users.IdEstate;";
-            echo $sql;
+
             $result = $connect->query($sql);
 
             if($result->num_rows > 0)
@@ -110,10 +142,13 @@
                     echo "<td>" . $estateCity . "</td>";
                     echo "<td>" . $estateZipCode . "</td>";
                     echo "<td>" . $estateCountry . "</td>";
-                    echo "<td>" . $estateUsersCount . "</td>";
+                    echo "<td class='no-sql'>" . $estateUsersCount . "</td>";
                     echo "<td class='no-sql'>" . $estateCreationDate . "</td>";
-                    echo "<td class='no-sql'><button class='btn btn-secondary no-sql editEstateBtn' data-bs-toggle='modal' data-bs-target='#editinfo'>Edytuj informacje</button></td>";
+                    echo "<td class='no-sql'><button class='btn btn-secondary no-sql editEstateBtn' data-bs-toggle='modal' data-bs-target='#editestate'>Edytuj informacje</button></td>";
+                    echo "</tr>";
                 }
+
+                echo "</table>";
             }
         }
         else
@@ -165,54 +200,68 @@
         </div>
     </div>
 
+    <!-- Edit Estate data modal -->
+    <div class="modal fade" id="editestate" tabindex="-1" aria-labelledby="editestate" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editinfo">Edytuj osiedle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <form action="PHPMethods/AdminMethods/editEstate_script" method="POST">
+
+                    <input type="text" max="60" name="estateId" id="estateId" class="form-control" value="" autocomplete="off" required style="display: none;">
+
+                    <label for="estateName" class="form-label mb-1 mt-3">Nazwa: </label>
+                    <input type="text" max="60" name="estateName" id="estateName" class="form-control" value="" autocomplete="off" required>
+
+                    <label for="estateStreet" class="form-label mb-1 mt-3">Ulica i nr: </label>
+                    <input type="text" max="60" name="estateStreet" id="estateStreet" class="form-control" value="" autocomplete="off" required>
+
+                    <label for="estateCity" class="form-label mb-1 mt-3">Miasto: </label>
+                    <input type="text" max="60" name="estateCity" id="estateCity" class="form-control" value="" autocomplete="off" required>
+
+                    <label for="estateZipCode" class="form-label mb-1 mt-3">Kod pocztowy: </label>
+                    <input type="text" max="60" name="estateZipCode" id="estateZipCode" class="form-control" value="" autocomplete="off" required>
+
+                    <label for="estateCountry" class="form-label mb-1 mt-3">Kraj: </label>
+                    <input type="text" max="60" name="estateCountry" id="estateCountry" class="form-control" value="" autocomplete="off" required>
+                    
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Anuluj</button>
+                    <button type="submit" name="editEstate" class="btn btn-success">Edytuj osiedle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         window.addEventListener("DOMContentLoaded", () => {
             //Edit estate data model =>
             document.querySelectorAll(".editEstateBtn").forEach(o => {
                 o.addEventListener("click", ()=> {
                     let e = o.parentNode.parentNode.querySelectorAll("*:not(.no-sql)");
+
                     var values = [];
                     e.forEach((ee) => {
                         values.push(ee.outerText);
                     });
                     
-                    var modalInputs = document.querySelectorAll("#editinfo input, select");
-                    
+                    var modalInputs = document.querySelectorAll("#editestate input");
+
                     //assign values to inputs            
                     for(let i = 0; i < values.length; i++)
                     {
-                        if(i == values.length - 1)
-                        {
-                            switch(values[i])
-                            {
-                                case "Zbanowany":
-                                    modalInputs[i].value = 0;
-                                    break;
-                                case "Użytkownik":
-                                    modalInputs[i].value = 1;
-                                    break;
-                                case "Administrator":
-                                    modalInputs[i].value = 2;
-                                    break;
-                            }
-                        }
-                        else
-                            modalInputs[i].value = values[i];
-
+                        modalInputs[i].value = values[i];
                     }
                 });
             });
-            //<=Edit user data modal 
-
-            //Edit user pass modal =>
-            document.querySelectorAll(".editUserPassBtn").forEach((o) => {
-                o.addEventListener("click", () => {
-                    let e = o.parentNode.parentNode.querySelector("*:first-child");
-
-                    document.querySelector("#editpass #modalUserId").value = e.outerText;
-                });
-            });
-            //<=Edit user pass modal
+            //<=Edit estate data modal 
 
             //Toast=>
             var toastElList = [].slice.call(document.querySelectorAll('.toast'))

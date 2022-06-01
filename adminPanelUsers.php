@@ -164,7 +164,9 @@
                         <button class='btn btn-secondary no-sql editUserBtn' data-bs-toggle='modal' data-bs-target='#editinfo'>Edytuj informacje</button>
                         <button class='btn btn-secondary no-sql editUserPassBtn' data-bs-toggle='modal' data-bs-target='#editpass'>Zmień hasło</button>
                         </td>"; 
+                    echo "</tr>";
                 }
+                echo "</table>";
             }
         }
         else
