@@ -26,16 +26,16 @@
     <!-- Osiedle -->
     <li>
       <div class="iocn-link">
-        <a>
+        <a href="">
           <i class='bx bxs-buildings' ></i>
-          <span class="link_name">Moje osiedle</span>
+          <span class="link_name">Moje osiedla</span>
         </a>
         <i class="bx bxs-chevron-down arrow"></i>
       </div>
 
       <ul class="sub-menu">
-        <li><a class="link_name" href="#">Moje osiedle</a></li>
-        <li><a href="#">Przegląd</a></li>
+        <li><a class="link_name" href="#">Moje osiedla</a></li>
+        <li><a href="browseEstates">Przeglądaj</a></li>
         <li><a href="#">Posty</a></li>
       </ul>
     </li>
