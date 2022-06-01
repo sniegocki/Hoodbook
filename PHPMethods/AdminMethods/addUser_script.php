@@ -10,8 +10,7 @@
     //check passed data if exists
     if(!isset($_POST['userName']) || !isset($_POST['userSurname']) || !isset($_POST['userEmail']) || !isset($_POST['pass']) || !isset($_POST['passRepeat']))
     {
-        echo "glab";
-        header("Location: ../../adminPanel");
+        header("Location: ../../adminPanelUsers");
         exit(0);
     }
 
@@ -30,7 +29,7 @@
             if($_POST['pass'] != $_POST['passRepeat'])
             {
                 $_SESSION['addUserError'] = "Hasła muszą być ze sobą zgodne. Spróbuj ponownie.";
-                header("Location: ../../adminPanel");
+                header("Location: ../../adminPanelUsers");
                 exit(0);
             }
             
@@ -89,7 +88,7 @@
                 catch(Exception $e)
                 {
                     $_SESSION['addUserError'] = $e;
-                    header("Location: ../../adminPanel");
+                    header("Location: ../../adminPanelUsers");
                     exit(0);
                 }
 
@@ -98,17 +97,17 @@
             catch(Exception $e)
             {
                 $_SESSION['addUserError'] = $e;
-                 header("Location: ../../adminPanel");
+                 header("Location: ../../adminPanelUsers");
                  exit(0);   
             }
 
-            header("Location: ../../adminPanel");
+            header("Location: ../../adminPanelUsers");
             exit(0);
         }
         else
         {
             $_SESSION['addUserError'] = "Użytkownik o podanym adresie email już istnieje.";
-            header("Location: ../../adminPanel");
+            header("Location: ../../adminPanelUsers");
             exit(0);
         }
     }

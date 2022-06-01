@@ -55,9 +55,8 @@
 
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Administracja</a></li>
-          <li><a href="adminPanel">Panel administratora</a></li>
-          <li><a href="#">Zarządzaj użytkownikami</a></li>
-          <li><a href="#">Zarządzaj osiedlami</a></li>
+          <li><a href="adminPanelUsers">Zarządzaj użytkownikami</a></li>
+          <li><a href="adminPanelEstates">Zarządzaj osiedlami</a></li>
           <li><a href="#">Przeglądaj zgłoszenia</a></li>
         </ul>
       </li>

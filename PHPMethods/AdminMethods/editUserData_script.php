@@ -51,5 +51,5 @@
         $_SESSION['profileUserUpdateError'] = "Nie udało się zaktualizować danych użytkownika o ID: " . $_POST['userId'];
     }
 
-    header("Location: ../../adminPanel");
+    header("Location: ../../adminPanelUsers");
 ?>

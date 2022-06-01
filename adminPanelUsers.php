@@ -80,7 +80,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HoodBook | Panel Administratorski</title> 
+    <title>HoodBook | Zarządanie użytkowikami</title> 
     <?php include "meta.php"; ?>
     
 </head>
@@ -119,7 +119,7 @@
                             <th>Data urodzenia</th>
                             <th>Data stworzenia</th>
                             <th>Uprawnienia</th>
-                            <th colspan="3">Akcja</th>
+                            <th colspan="2">Akcja</th>
                         </tr>
                 TABLE;
 
@@ -161,8 +161,8 @@
                     }
                     echo "</td>";
                     echo "<td class='no-sql'>
-                        <button class='btn btn-secondary no-sql' data-bs-toggle='modal' data-bs-target='#editinfo'>Edytuj informacje</button>
-                        <button class='btn btn-secondary no-sql' data-bs-toggle='modal' data-bs-target='#editpass'>Zmień hasło</button>
+                        <button class='btn btn-secondary no-sql editUserBtn' data-bs-toggle='modal' data-bs-target='#editinfo'>Edytuj informacje</button>
+                        <button class='btn btn-secondary no-sql editUserPassBtn' data-bs-toggle='modal' data-bs-target='#editpass'>Zmień hasło</button>
                         </td>"; 
                 }
             }
