@@ -7,6 +7,8 @@
         exit(0);
     }
 
+    $actualEstate = $_GET['estate'];
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +38,7 @@
                 <?php
                     if(!$connect->connect_error) {
                         //Estates table
-                        $sql = "SELECT Posts.Id, Posts.IdEstate, Posts.IdAuthor, Posts.Date, Posts.TextContent, Posts.Type FROM Posts;";
+                        $sql = "SELECT Posts.Id, Posts.IdEstate, Posts.IdAuthor, Posts.Date, Posts.TextContent, Posts.Type FROM Posts WHERE Posts.IdEstate = ".$actualEstate.";";
                         $result = $connect->query($sql);
 
                         while($row = $result->fetch_assoc()) {
