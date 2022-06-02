@@ -23,53 +23,65 @@
     <?php include "meta.php"; ?>
 </head>
 <body>
-    <?php
+    <?php require "sidebar.php"; ?>
+    <section class="home-section bg-light">
+        <div class="home-content p-3 justify-content-center">
 
-        require "PHPMethods/connect.php";
+            <div class="col-12 col-lg-10 col-xl-8">
+                <div class="d-flex flex-column rounded flex-wrap shadow-sm p-3 bg-white">
+                    
 
-        if(!$connect->connect_error)
-        {
-            $sql = "SELECT * FROM Estates WHERE Id=" . $_GET['estate'] . ";";
+                        <?php
+                            require "PHPMethods/connect.php";
+                            
+                            if(!$connect->connect_error)
+                            {
+                                $sql = "SELECT * FROM Estates WHERE Id=" . $_GET['estate'] . ";";
 
-            if($result = $connect->query($sql))
-            {
-                if($result->num_rows == 1)
-                {
-                    $row = $result->fetch_assoc();
+                                if($result = $connect->query($sql))
+                                {
+                                    if($result->num_rows == 1)
+                                    {
+                                        $row = $result->fetch_assoc();
 
-                    $estateId = $row['Id'];
-                    $estateName = $row['Name'];
-                    $estateStreet = $row['Street'];
-                    $estateZipCode = $row['ZipCode'];
-                    $estateCity = $row['City'];
-                    $estateCountry = $row['Country'];
+                                        $estateId = $row['Id'];
+                                        $estateName = $row['Name'];
+                                        $estateStreet = $row['Street'];
+                                        $estateZipCode = $row['ZipCode'];
+                                        $estateCity = $row['City'];
+                                        $estateCountry = $row['Country'];
 
-                    //User name
-                    echo "<p class='profile-name'>Nazwa: <span>" . $estateName . "</span></p>";
-                    //User surname
-                    echo "<p class='profile-surname'>Nazwisko: <span>" . $estateStreet . "</span></p>";
-                    //User email
-                    echo "<p class='profile-email'>Email: <span>" . $estateCity . "</span></p>";
-                    //User phone
-                    echo "<p class='profile-phone'>Telefon: <span>" . $estateZipCode . "</span></p>";
-                    //User address
-                    echo "<p class='profile-surname'>Adres: <span>" . $estateCountry . "</span></p>";
-                }
-                else
-                {
-                    echo "Takie osiedle nie istnieje";
-                }
-            }
-            else
-            {
-                echo "Database query error has occurred";
-            }
-        }
-        else
-        {
-            echo "Bład w połączeniu z bazą";
-        }
+                                        //User name
+                                        echo "<p class='profile-name'>Nazwa: <span class='text-muted'>" . $estateName . "</span></p>";
+                                        //User surname
+                                        echo "<p class='profile-surname'>Nazwisko: <span class='text-muted'>" . $estateStreet . "</span></p>";
+                                        //User email
+                                        echo "<p class='profile-email'>Email: <span class='text-muted'>" . $estateCity . "</span></p>";
+                                        //User phone
+                                        echo "<p class='profile-phone'>Telefon: <span class='text-muted'>" . $estateZipCode . "</span></p>";
+                                        //User address
+                                        echo "<p class='profile-surname'>Adres: <span class='text-muted'>" . $estateCountry . "</span></p>";
+                                    }
+                                    else
+                                    {
+                                        echo "Takie osiedle nie istnieje";
+                                    }
+                                }
+                                else
+                                {
+                                    echo "Database query error has occurred";
+                                }
+                            }
+                            else
+                            {
+                                echo "Bład w połączeniu z bazą";
+                            }
 
-    ?>
+                        ?>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

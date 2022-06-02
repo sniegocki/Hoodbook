@@ -106,8 +106,11 @@
                     echo "<td><a target='_blank' href='checkEstate?estate=$estateId'>" . $estateName . "</a></td>";
                     echo "<td>" . $appStatus . "</td>";
                     echo "<td>" . $appSendDate . "</td>";
-                    echo "<td class='no-sql'><a href='PHPMethods/AdminMethods/changeApplicationStatus?idapp=$appId&iduser=$userId&idestate=$estateId&type=2'>Akceptuj</a></td>";
-                    echo "<td class='no-sql'><a href='PHPMethods/AdminMethods/changeApplicationStatus?idapp=$appId&iduser=$userId&idestate=$estateId&type=1'>Odrzuć</a></td>";
+                    echo "
+                        <td class='no-sql'>
+                            <a class='btn btn-success' href='PHPMethods/AdminMethods/changeApplicationStatus?idapp=$appId&iduser=$userId&idestate=$estateId&type=2'>Akceptuj</a>
+                            <a class='btn btn-danger' href='PHPMethods/AdminMethods/changeApplicationStatus?idapp=$appId&iduser=$userId&idestate=$estateId&type=1'>Odrzuć</a>
+                        </td>";
                     echo "</tr>";
                 }
 
