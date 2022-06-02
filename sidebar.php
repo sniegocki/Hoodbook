@@ -36,7 +36,7 @@
       <ul class="sub-menu">
         <li><a class="link_name" href="#">Moje osiedla</a></li>
         <li><a href="browseEstates">Przeglądaj</a></li>
-        <li><a href="#">Posty</a></li>
+        <li><a href="chooseEstate">Posty</a></li>
       </ul>
     </li>
 
