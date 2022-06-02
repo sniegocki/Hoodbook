@@ -94,14 +94,24 @@
                                             <input type="text" name="idSender" class="d-none" value="'.$_SESSION['loggedUser'].'">
                                 ');
 
-                                $sql2 = "SELECT UserToEstateInvites.IdSender, UserToEstateInvites.IdTarget FROM UserToEstateInvites WHERE UserToEstateInvites.IdSender = ".$_SESSION['loggedUser']." AND UserToEstateInvites.IdTarget = ".$estateId.";";
+                                $sql2 = "SELECT UserToEstateInvites.IdSender, UserToEstateInvites.IdTarget, UserToEstateInvites.Status FROM UserToEstateInvites WHERE UserToEstateInvites.IdSender = ".$_SESSION['loggedUser']." AND UserToEstateInvites.IdTarget = ".$estateId.";";
                                 $result2 = $connect->query($sql2);
 
+                                while($row2 = $result2->fetch_assoc()) {
+                                    $stateInviteStatus = $row2['Status'];
+                                }
+
                                 if($result2->num_rows == 1) {
-                                    echo ('<input type="button" class="btn btn-secondary rounded-0 w-100" value="Oczekiwanie..." disabled>');
+                                    if ($stateInviteStatus !== "Accepted") {
+                                        echo ('<input type="button" class="btn btn-secondary rounded-0 w-100" value="Oczekiwanie..." disabled>');
+                                    } else {
+                                        echo ('<input type="button" class="btn btn-success rounded-0 w-100" value="Już należysz" disabled>');
+                                    }
                                 } else {
                                     echo ('<input type="submit" name="estateApplication" class="btn btn-primary rounded-0 w-100" value="Złóż aplikację">');
                                 }
+
+                            
 
                             echo ('
                                         </form>
