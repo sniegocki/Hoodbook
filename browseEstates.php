@@ -111,8 +111,6 @@
                                     echo ('<input type="submit" name="estateApplication" class="btn btn-primary rounded-0 w-100" value="Złóż aplikację">');
                                 }
 
-                            
-
                             echo ('
                                         </form>
                                     </div>
