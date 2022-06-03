@@ -1,6 +1,9 @@
 <?php
     @session_start();
 
+    //refresh page for post changes
+    
+
     if(!isset($_SESSION['loggedUser']))
     {
         header("Location: app");
@@ -51,6 +54,38 @@
         </div>";
 
         unset($_SESSION['addPostError']);
+    }
+
+    if(isset($_SESSION['deltePostSucces']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['deltePostSucces'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['deltePostSucces']);
+    }
+
+    if(isset($_SESSION['deltePostError']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['deltePostError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['deltePostError']);
     }
 
 ?>
@@ -114,7 +149,7 @@
                                 ');
                                 
                                 if ($postIdAuthor == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
-                                    echo "<div class='delete-post' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń post'><a href='deletePost?postId=$postId'>&times;</div>";
+                                    echo "<div class='delete-post' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń post'><a href='deletePost?postId=$postId&estateId=$postIdEstate'>&times;</a></div>";
                                 }   
 
                                 echo ('
@@ -212,7 +247,7 @@
                     <input type="text" name="postTitle" id="postTitle" class="form-control" minlength="6" maxlength="50" required> -->
 
                     <label for="postContent" class="form-label">Treść posta:</label>
-                    <textarea name="postContent" id="postContent" cols="30" rows="10" minlength="40" class="form-control" required></textarea>
+                    <textarea name="postContent" id="postContent" cols="30" rows="10" minlength="4" class="form-control" required></textarea>
 
                     
                     <label for="formFile" class="form-label mt-3">Wstaw obrazki</label>
