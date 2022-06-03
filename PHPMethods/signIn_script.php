@@ -2,12 +2,7 @@
 
     if(!isset($_POST['email']) || !isset($_POST['pass']))
     {
-        $previous = "javascript:history.go(-1)";
-        if(isset($_SERVER['HTTP_REFERER'])) {
-            $previous = $_SERVER['HTTP_REFERER'];
-        }
-
-        header("Location: ../signIn");
+        header("Location: javascript:history.go(-1)");
         exit(0);
     }
 
