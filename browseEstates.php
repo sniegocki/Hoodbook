@@ -66,7 +66,7 @@
                 <?php
                     if(!$connect->connect_error) {
                         //Estates table
-                        $sql = "SELECT Estates.Id, Estates.Name, Estates.Street, Estates.ZipCode, Estates.City, Estates.Country, Estates.CreationDate, count(Estates_Users.IdUser) AS UsersCount FROM Estates JOIN Estates_Users ON Estates.Id=Estates_Users.IdEstate GROUP BY Estates.Id;";
+                        $sql = "SELECT Estates.Id, Estates.Name, Estates.Street, Estates.ZipCode, Estates.City, Estates.Country, Estates.CreationDate, count(Estates_Users.IdUser) AS UsersCount FROM Estates LEFT JOIN Estates_Users ON Estates.Id=Estates_Users.IdEstate GROUP BY Estates.Id;";
                         $result = $connect->query($sql);
 
                         while($row = $result->fetch_assoc()) {
