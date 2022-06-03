@@ -21,6 +21,12 @@
     
             if(password_verify($_POST['pass'], $row['Password']))
             {
+                if($row['Permission'] == 0)
+                {
+                    $_SESSION['signIn_error'] = "Twoje konto jest zablokowane";
+                    header("Location: ../signIn");
+                    exit(0);
+                }
                 $_SESSION['loggedUser'] = $row['Id'];
                 $_SESSION['permission'] = $row['Permission'];
 
