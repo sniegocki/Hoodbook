@@ -104,6 +104,8 @@
                                 if($result2->num_rows == 1) {
                                     if ($stateInviteStatus !== "Accepted") {
                                         echo ('<input type="button" class="btn btn-secondary rounded-0 w-100" value="Oczekiwanie..." disabled>');
+                                    } else if ($stateInviteStatus == "Rejected") {
+                                        echo ('<input type="button" class="btn btn-danger rounded-0 w-100" value="Odrzucone" disabled>');
                                     } else {
                                         echo ('<input type="button" class="btn btn-success rounded-0 w-100" value="Już należysz" disabled>');
                                     }
