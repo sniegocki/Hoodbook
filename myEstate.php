@@ -9,6 +9,17 @@
 
     $actualEstate = $_GET['estate'];
 
+    require "PHPMethods/connect.php";
+
+    $checkAffiliation = "SELECT * FROM Estates_Users WHERE IdEstate=".$actualEstate." AND IdUser= ".$_SESSION['loggedUser'].";";
+    $result = $connect->query($checkAffiliation);
+
+    if($result->num_rows == 1) {
+        //należy do osiedla
+    } else {
+        header("Location: javascript:history.go(-1)");
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -22,10 +33,7 @@
 </head>
 <body>
 
-    <?php 
-        require "PHPMethods/connect.php";
-        require "sidebar.php";
-    ?>
+    <?php include "sidebar.php"; ?>
 
     <section class="home-section bg-light">
         <div class="home-content p-3 justify-content-center">
