@@ -165,3 +165,21 @@
  .bg-toast-error {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(225deg, #e92121 0%, #921212 100%);
  }
+
+ /* POSTS */
+
+ .delete-post {
+     position: absolute;
+     right: 16px;
+     top: 0px;
+     font-size: 2em;
+     margin: 0;
+     padding: 0;
+     color: #921212;
+     cursor: pointer;
+     transition: all 0.2s ease-in;
+ }
+
+ .delete-post:hover {
+     transform: rotateZ(180deg) translateY(-6px);
+ }
