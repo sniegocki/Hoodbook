@@ -47,7 +47,7 @@
                             <input type="text" name="surname" id="surname" class="form-control" placeholder="Wprowadź swoje nazwisko..." required autocomplete="surname">
 
                             <label for="email" class="form-label mt-4">Email:</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Wprowadź swój adres e-mail..." required autocomplete="email">
+                            <input type="email" name="email" id="email" class="form-control" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" placeholder="Wprowadź swój adres e-mail..." required autocomplete="email">
 
                             <label for="pass" class="form-label mt-4">Hasło:</label>
                             <!--Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character-->

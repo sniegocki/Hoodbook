@@ -195,7 +195,7 @@
                     <input type="text" max="60" name="userId" id="userId" class="form-control" value="" autocomplete="off" required style="display: none;" required>
 
                     <label for="userEmail" class="form-label mb-1 mt-3">Email: </label>
-                    <input type="text" max="60" name="userEmail" id="userEmail" class="form-control" value="" autocomplete="off" required>
+                    <input type="text" max="60" name="userEmail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" id="userEmail" class="form-control" value="" autocomplete="off" required>
 
                     <label for="userName" class="form-label mb-1 mt-3">Imię: </label>
                     <input type="text" max="60" name="userName" id="userName" class="form-control" value="" autocomplete="off" required>
@@ -204,7 +204,7 @@
                     <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="" autocomplete="off" required>
 
                     <label for="userPhone" class="form-label mb-1 mt-3">Telefon: </label>
-                    <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="" autocomplete="off">
+                    <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="" autocomplete="off" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
 
                     <label for="userAddress" class="form-label mb-1 mt-3">Adres: </label>
                     <input type="text" max="60" name="userAddress" id="userAddress" class="form-control" value="" autocomplete="off">
@@ -243,7 +243,7 @@
                     <form action="PHPMethods/AdminMethods/addUser_script" method="POST">
 
                     <label for="userEmail" class="form-label mb-1 mt-3">Email: </label>
-                    <input type="text" max="60" name="userEmail" id="userEmail" class="form-control" value="" autocomplete="off" required>
+                    <input type="text" max="60" name="userEmail" id="userEmail" class="form-control" value="" autocomplete="off" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
 
                     <label for="userName" class="form-label mb-1 mt-3">Imię: </label>
                     <input type="text" max="60" name="userName" id="userName" class="form-control" value="" autocomplete="off" required>
@@ -252,7 +252,7 @@
                     <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="" autocomplete="off" required>
 
                     <label for="userPhone" class="form-label mb-1 mt-3">Telefon: </label>
-                    <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="" autocomplete="off">
+                    <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="" autocomplete="off" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
 
                     <label for="userAddress" class="form-label mb-1 mt-3">Adres: </label>
                     <input type="text" max="60" name="userAddress" id="userAddress" class="form-control" value="" autocomplete="off">

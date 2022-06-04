@@ -217,7 +217,7 @@
                                     </div>');
 
 
-                                     $sql = "SELECT * FROM Comments WHERE IdPost=" . $postId . ";";
+                                     $sql = "SELECT * FROM Comments WHERE IdPost=" . $postId . " ORDER BY Date ASC;";
 
                                      $resultComments = $connect->query($sql);
                                      if($resultComments->num_rows > 0) {
@@ -227,6 +227,7 @@
                                             echo "<div class='postComment bg-light px-3 py-2 mb-3 rounded-3 position-relative w-100'>";
                                             $sqlUser = "SELECT Users.Id, Users.Name, Users.Surname FROM Users WHERE Id=" . $rowComment['IdAuthor'] . ";";
                                             $resultUser = $connect->query($sqlUser);
+                                            $commentId = $rowComment['Id'];
 
                                             if($resultUser->num_rows == 1) {
                                                 $rowUser = $resultUser->fetch_assoc();
@@ -247,19 +248,15 @@
                                                 }
                                                 
                                                 echo ('<div class="d-flex flex-column ms-3 w-100 ">');
-
-                                                    echo "
-                                                        <a class='user-name fw-bold text-decoration-none' target='_blank' href='profile?user='" . $rowUser['Id'] . "'>" . $rowUser['Name'] . " " . $rowUser['Surname'] . "<i class='fw-light text-muted'> - skomentował:</i></a>
-                                                        <span class='commentDate text-muted fw-light border-bottom pb-1'>" . $rowComment['Date'] . "</span>
+                                                echo "<a class='user-name fw-bold text-decoration-none' target='_blank' href='profile?user=" . $rowUser['Id'] . "'>" . $rowUser['Name'] . " " . $rowUser['Surname'] . "<i class='fw-light text-muted'> - skomentował:</i></a><span class='commentDate text-muted fw-light border-bottom pb-1'>" . $rowComment['Date'] . "</span>";
 
 
-                                                        <p class='comment-content mt-2 mb-0 text-muted'>" . $rowComment['TextContent'] . "</p>
-                                                        ";
+                                                echo "<p class='comment-content mt-2 mb-0 text-muted'>" . $rowComment['TextContent'] . "</p>";
                                                 echo "</div>";
 
                                                 //delete comment button
-                                                if ($postIdAuthor == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
-                                                    echo "<a href='deleteComment?commentId=$postId&estateId=$postIdEstate' class='delete-post' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
+                                                if ($rowComment['IdAuthor'] == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
+                                                    echo "<a href='deleteComment?commentId=$commentId&estateId=$postIdEstate' class='delete-post' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
                                                 } 
                                                 
                                                 echo "</div>";
