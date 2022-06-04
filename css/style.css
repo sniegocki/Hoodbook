@@ -178,8 +178,10 @@
      color: #921212;
      cursor: pointer;
      transition: all 0.2s ease-in;
+     text-decoration: none;
  }
 
  .delete-post:hover {
      transform: rotateZ(180deg) translateY(-6px);
+     color: #921212;
  }

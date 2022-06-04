@@ -26,7 +26,7 @@
     <!-- Osiedle -->
     <li>
       <div class="iocn-link">
-        <a href="">
+        <a>
           <i class='bx bxs-buildings' ></i>
           <span class="link_name">Moje osiedla</span>
         </a>

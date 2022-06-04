@@ -149,7 +149,7 @@
                                 ');
                                 
                                 if ($postIdAuthor == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
-                                    echo "<div class='delete-post' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń post'><a href='deletePost?postId=$postId&estateId=$postIdEstate'>&times;</a></div>";
+                                    echo "<a href='deletePost?postId=$postId&estateId=$postIdEstate' class='delete-post' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń post'>&times;</a>";
                                 }   
 
                                 echo ('

@@ -69,7 +69,7 @@
         if(!$connect->connect_error)
         {
             //Estates table
-            $sql = "SELECT UserToEstateInvites.Id, UserToEstateInvites.IdSender, UserToEstateInvites.IdTarget, UserToEstateInvites.Status, UserToEstateInvites.SendDate, Users.Name AS 'UserName', Users.Surname, Estates.Name AS 'EstateName' FROM UserToEstateInvites JOIN Users ON UserToEstateInvites.IdSender=Users.Id JOIN Estates ON UserToEstateInvites.IdTarget=Estates.Id";
+            $sql = "SELECT UserToEstateInvites.Id, UserToEstateInvites.IdSender, UserToEstateInvites.IdTarget, UserToEstateInvites.Status, UserToEstateInvites.SendDate, Users.Name AS 'UserName', Users.Surname, Estates.Name AS 'EstateName' FROM UserToEstateInvites JOIN Users ON UserToEstateInvites.IdSender=Users.Id JOIN Estates ON UserToEstateInvites.IdTarget=Estates.Id ORDER BY UserToEstateInvites.SendDate DESC";
 
             $result = $connect->query($sql);
 
