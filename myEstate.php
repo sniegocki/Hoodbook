@@ -210,9 +210,36 @@
 
                                             <div class="d-flex">
                                             <span class="postIdCtn d-none">' . $postId . '</span>
-                                            <span class="estateIdCtn d-none">' . $postIdEstate . '</span>
-                                            <a href="#" class="text-primary text-decoration-none me-3"><i class="bx bxs-like text-primary"></i> Polub</a>
+                                            <span class="estateIdCtn d-none">' . $postIdEstate . '</span>');
+
+                                            //count likes
+                                            $sqlCount = "SELECT count(*) FROM ReactionsPosts WHERE IdPost=" . $postId . " GROUP BY IdPost;";
+                                            $resultCount = $connect->query($sqlCount);
+                                            $commentsCount = 0;
+                                            if($resultCount->num_rows > 0)
+                                            {
+                                                while($row = $resultCount->fetch_assoc())
+                                                {
+                                                    $commentsCount++;
+                                                }
+                                            }
+
+                                            //like, dislike post
+                                            $sqlPost = "SELECT * FROM ReactionsPosts WHERE IdPost=" . $postId . " AND IdAuthor=" . $_SESSION['loggedUser'] . ";";
+                                            $resultPost = $connect->query($sqlPost);
+                                            if($resultPost->num_rows == 1)
+                                            {
+                                                echo('<a href="likeDislikePost?postId=' . $postId . '&estateId=' . $postIdEstate . '&userId=' . $_SESSION['loggedUser'] . '" class="text-primary text-decoration-none me-3"><i class="bx bxs-like text-primary"></i> Lubisz to!</a>');
+                                            }
+                                            else
+                                            {
+                                                echo('<a href="likeDislikePost?postId=' . $postId . '&estateId=' . $postIdEstate . '&userId=' . $_SESSION['loggedUser'] . '" class="text-primary text-decoration-none me-3"><i class="bx bxs-like text-primary"></i> Polub to!</a>');
+                                            }
+
+
+                                            echo ('
                                             <a data-bs-toggle="modal" data-bs-target="#addcommentpost" class="text-secondary text-decoration-none makePostCommentBtn" style="cursor: pointer;"><i class="bx bxs-comment text-secondary"></i> Skomentuj</a>
+                                            <span>' . $commentsCount . ' osób lubi ten post!</span>
                                         </div>
                                     </div>');
 
