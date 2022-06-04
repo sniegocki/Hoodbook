@@ -19,7 +19,7 @@
         <section class="home-section">
             <div class="home-content p-3 d-flex flex-column">
                 
-                <div class="row w-100">
+                <div class="row w-100 gy-5">
 
                     <div class="col-12 col-lg-12 col-xl-5">
                         <div class="shadow-sm rounded bg-white p-3">
