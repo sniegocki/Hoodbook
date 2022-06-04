@@ -297,24 +297,21 @@
                                                 } 
                                                 echo "</div>";
                                             echo "</div>";
-                                            }
+                                            }   
                                         }
-                                        
                                      }
-                            echo ('
-                                </div>
+                                     echo ('
+                                    </div>
+                                 </div>
                             </div>
-                            ');
-
+                                    ');
                         }
-
-                        
                     } 
                 ?>
-            </div>
 
-        </div>
-    </section>
+            </div> <!-- row -->
+        </div> <!-- home content -->
+    </section> <!-- home section -->
 
     <!-- Add Post Modal -->
     <div class="modal fade" id="addPost" tabindex="-1" aria-labelledby="addPost" aria-hidden="true">
