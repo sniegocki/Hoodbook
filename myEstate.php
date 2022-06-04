@@ -229,7 +229,7 @@
                                             <span class="estateIdCtn d-none">' . $postIdEstate . '</span>');
 
                                             //count likes
-                                            $sqlCount = "SELECT count(*) AS 'LikesCount' FROM ReactionsPosts WHERE IdPost=" . $postId . " GROUP BY IdPost;";
+                                            $sqlCount = "SELECT count(*) AS 'LikesCount' FROM ReactionsPosts WHERE IdPost=" . $postId . ";";
                                             $resultCount = $connect->query($sqlCount);
                                             $row = $resultCount->fetch_assoc();
                                             $commentsCount = $row['LikesCount'];
@@ -295,7 +295,6 @@
                                                 if ($rowComment['IdAuthor'] == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
                                                     echo "<a href='deleteComment?commentId=$commentId&estateId=$postIdEstate' class='delete-post' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
                                                 } 
-                                                
                                                 echo "</div>";
                                             echo "</div>";
                                             }
@@ -336,13 +335,6 @@
 
                     <label for="postContent" class="form-label">Treść posta:</label>
                     <textarea name="postContent" id="postContent" cols="30" rows="10" minlength="4" class="form-control" required></textarea>
-
-                    
-                    <label for="formFile" class="form-label mt-3">Wstaw obrazki</label>
-                    <input class="form-control" type="file" id="formFile" disabled>
-                    <small class="text-muted">Funkcja dodawania obrazków do postów wyłącznie dla użytkowników Premium.</small>
-                    
-                    
                 </div>
 
                 <div class="modal-footer">

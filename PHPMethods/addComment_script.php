@@ -13,7 +13,7 @@
 
     require "connect.php";
 
-    $sql = "INSERT INTO Comments VALUES(default, " . $_POST['postId'] . ", " . $_SESSION['loggedUser'] . ", '" . date('Y-m-d H:i:s', time()) . "', '" . $_POST['postComment'] . "');";
+    $sql = "INSERT INTO Comments VALUES(default, " . $_POST['postId'] . ", " . $_SESSION['loggedUser'] . ", '" . date('Y-m-d H:i:s', time()) . "', '" . nl2br(strip_tags($_POST['postComment'], "<br>")) . "');";
 
     $href= "Location: ../myEstate?estate=" . $_POST['estateId'];
 

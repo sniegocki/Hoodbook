@@ -11,7 +11,7 @@
     $postEstate = $_POST['toEstate'];
     // $postTitle = $_POST['postTitle'];
     $postDate = date("Y-m-d H:i:s");
-    $postContent = $_POST['postContent'];
+    $postContent = nl2br(strip_tags($_POST['postContent'], "<br>"));
     $postType = "Text";
 
     require "connect.php";
