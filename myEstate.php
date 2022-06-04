@@ -256,15 +256,21 @@
                                             <!-- Post Footer -->
                                             <hr class="w-100" style="color: rgba(0,0,0,0.2);">
 
-                                            <div class="d-flex">
-                                            <span class="postIdCtn d-none">' . $postId . '</span>
-                                            <span class="estateIdCtn d-none">' . $postIdEstate . '</span>');
-
+                                            ');
+                                            
                                             //count likes
                                             $sqlCount = "SELECT count(*) AS 'LikesCount' FROM ReactionsPosts WHERE IdPost=" . $postId . ";";
                                             $resultCount = $connect->query($sqlCount);
                                             $row = $resultCount->fetch_assoc();
                                             $commentsCount = $row['LikesCount'];
+
+                                            echo ('
+                                            
+                                            <small class="w-100 text-muted mb-2"><span class="text-primary">'. $commentsCount .'</span> osób lubi ten post</small>
+
+                                            <div class="d-flex">
+                                            <span class="postIdCtn d-none">' . $postId . '</span>
+                                            <span class="estateIdCtn d-none">' . $postIdEstate . '</span>');
 
                                             //like, dislike post
                                             $sqlPost = "SELECT * FROM ReactionsPosts WHERE IdPost=" . $postId . " AND IdAuthor=" . $_SESSION['loggedUser'] . ";";
@@ -281,7 +287,6 @@
 
                                             echo ('
                                             <a data-bs-toggle="modal" data-bs-target="#addcommentpost" class="text-secondary text-decoration-none makePostCommentBtn" style="cursor: pointer;"><i class="bx bxs-comment text-secondary"></i> Skomentuj</a>
-                                            <span>' . $commentsCount . ' osób lubi ten post!</span>
                                         </div>
                                     </div>');
 
@@ -329,24 +334,21 @@
                                                 } 
                                                 echo "</div>";
                                             echo "</div>";
-                                            }
+                                            }   
                                         }
-                                        
                                      }
-                            echo ('
-                                </div>
+                                     echo ('
+                                    </div>
+                                 </div>
                             </div>
-                            ');
-
+                                    ');
                         }
-
-                        
                     } 
                 ?>
-            </div>
 
-        </div>
-    </section>
+            </div> <!-- row -->
+        </div> <!-- home content -->
+    </section> <!-- home section -->
 
     <!-- Add Post Modal -->
     <div class="modal fade" id="addPost" tabindex="-1" aria-labelledby="addPost" aria-hidden="true">
