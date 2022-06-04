@@ -60,8 +60,6 @@
             <div class="d-flex rounded flex-wrap shadow-sm">
                 <div class="col-12 col-lg-12 p-3 bg-white">
 
-
-    <button class='btn btn-success no-sql mb-3' data-bs-toggle='modal' data-bs-target='#addeapplication'>Dodaj zgłoszenie</button>
     <?php
         require "PHPMethods/connect.php";
         require "sidebar.php";
