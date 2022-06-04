@@ -60,6 +60,8 @@
 
                             <input type="submit" value="Zarejestruj" class="w-100 btn btn-primary mt-5" name="submit">
 
+                            <div class="text-center mt-3 text-muted">Masz już konto? <a href="signIn" class="text-secondary">Zaloguj się</a></div>
+
                             
 
                             <?php
