@@ -252,7 +252,7 @@
                                             echo "<p class='comment-content'>" . $rowComment['TextContent'] . "</p>";
 
                                             //delete comment button
-                                            if ($postIdAuthor == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
+                                            if ($rowComment['IdAuthor'] == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
                                                 echo "<a href='deleteComment?commentId=$commentId&estateId=$postIdEstate' class='delete-comment' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
                                             } 
 
