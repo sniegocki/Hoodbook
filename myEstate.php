@@ -223,7 +223,8 @@
                                         echo "<div class='postComments'>";
                                         while($rowComment = $resultComments->fetch_assoc())
                                         {
-                                            echo "<div class='postComment'">
+                                            echo "<div class='postComment'>";
+                                            $commentId = $rowComment['Id'];
                                             $sqlUser = "SELECT Users.Id, Users.Name, Users.Surname FROM Users WHERE Id=" . $rowComment['IdAuthor'] . ";";
                                             $resultUser = $connect->query($sqlUser);
                                             if($resultUser->num_rows == 1)
@@ -252,7 +253,7 @@
 
                                             //delete comment button
                                             if ($postIdAuthor == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
-                                                echo "<a href='deleteComment?commentId=$postId&estateId=$postIdEstate' class='delete-comment' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
+                                                echo "<a href='deleteComment?commentId=$commentId&estateId=$postIdEstate' class='delete-comment' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
                                             } 
 
                                             echo "</div>";
@@ -260,7 +261,6 @@
                                         echo "</div>";
                                      }
                             echo ('
-                                </div>
                             </div>
                             ');
 
