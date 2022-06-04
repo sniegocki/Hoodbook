@@ -220,7 +220,7 @@
                                      $resultComments = $connect->query($sql);
                                      if($resultComments->num_rows > 0)
                                      {
-                                         echo "<div class='postComments'>";
+                                        echo "<div class='postComments'>";
                                         while($rowComment = $resultComments->fetch_assoc())
                                         {
                                             echo "<div class='postComment'">
@@ -249,6 +249,13 @@
                                                 echo "<span class='commentDate'>" . $rowComment['Date'] . "</span>";
                                             }
                                             echo "<p class='comment-content'>" . $rowComment['TextContent'] . "</p>";
+
+                                            //delete comment button
+                                            if ($postIdAuthor == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
+                                                echo "<a href='deleteComment?commentId=$postId&estateId=$postIdEstate' class='delete-comment' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
+                                            } 
+
+                                            echo "</div>";
                                         }
                                         echo "</div>";
                                      }
