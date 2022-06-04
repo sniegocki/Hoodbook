@@ -76,7 +76,7 @@
 
                                 if(!$connect->connect_error) {
                                     //Estates table
-                                    $sql = "SELECT * FROM Posts JOIN Estates ON Posts.IdEstate=Estates.Id JOIN Estates_Users ON Estates.Id=Estates_Users.IdEstate WHERE Estates_Users.IdUser= ".$_SESSION['loggedUser']." LIMIT 6";
+                                    $sql = "SELECT * FROM Posts JOIN Estates ON Posts.IdEstate=Estates.Id JOIN Estates_Users ON Estates.Id=Estates_Users.IdEstate WHERE Estates_Users.IdUser= ".$_SESSION['loggedUser']." ORDER BY Posts.Date DESC LIMIT 6";
                                     $result = $connect->query($sql);
             
                                     while($row = $result->fetch_assoc()) {
