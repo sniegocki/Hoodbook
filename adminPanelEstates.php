@@ -176,8 +176,8 @@
                     echo "<td>" . $estateCountry . "</td>";
                     echo "<td class='no-sql'>" . $estateUsersCount . "</td>";
                     echo "<td class='no-sql'>" . $estateCreationDate . "</td>";
-                    echo "<td class='no-sql'><button class='btn btn-secondary no-sql editEstateBtn' data-bs-toggle='modal' data-bs-target='#editestate'>Edytuj informacje</button></td>";
-                    echo "<td class='no-sql'><button class='btn btn-secondary no-sql editAvatar' data-bs-toggle='modal' data-bs-target='#editavatar'>Edytuj avatar</button></td>";
+                    echo "<td class='no-sql'><button class='btn btn-secondary me-2 no-sql editEstateBtn' data-bs-toggle='modal' data-bs-target='#editestate'>Edytuj informacje</button>";
+                    echo "<button class='btn btn-secondary no-sql editAvatar' data-bs-toggle='modal' data-bs-target='#editavatar'>Edytuj avatar</button></td>";
                     echo "</tr>";
                 }
 
