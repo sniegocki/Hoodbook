@@ -82,16 +82,19 @@
 
                             echo ('
                                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                                    <div class="d-flex flex-column bg-white rounded shadow align-items-center p-3">
+                                    <div class="d-flex flex-column bg-white rounded shadow align-items-center p-3 h-100">
                                         <h3 class="h3 text-center" style="overflow-wrap: anywhere;">'.$estateName.'</h3>
                                         <img src="img/estate-placeholder.svg" alt="zdjęcie osiedla" class="img-fluid">
-                                        <p class="text-muted mt-2 mb-0">'.$estateStreet.', '.$estateZipCode.', '.$estateCity.' '.$estateCountry.'</p>
-                                        <p class="text-muted mt-2">Liczba mieszkańców: '.$estateUsersCount.'</p>
 
-                                        <form action="PHPMethods/userToEstateInvite" method="POST" class="w-100">
+                                        
+                                            <p class="text-muted mt-2 mb-0">'.$estateStreet.', '.$estateZipCode.', '.$estateCity.' '.$estateCountry.'</p>
+                                            <p class="text-muted mt-2">Liczba mieszkańców: '.$estateUsersCount.'</p>
+                                            <div class="d-flex flex-column text-center mt-auto">
+                                                <form action="PHPMethods/userToEstateInvite" method="POST" class="w-100">
 
-                                            <input type="text" name="idTarget" class="d-none" value="'.$estateId.'">
-                                            <input type="text" name="idSender" class="d-none" value="'.$_SESSION['loggedUser'].'">
+                                                    <input type="text" name="idTarget" class="d-none" value="'.$estateId.'">
+                                                    <input type="text" name="idSender" class="d-none" value="'.$_SESSION['loggedUser'].'">
+                                            </div>
                                 ');
 
                                 $sql2 = "SELECT UserToEstateInvites.IdSender, UserToEstateInvites.IdTarget, UserToEstateInvites.Status FROM UserToEstateInvites WHERE UserToEstateInvites.IdSender = ".$_SESSION['loggedUser']." AND UserToEstateInvites.IdTarget = ".$estateId.";";
