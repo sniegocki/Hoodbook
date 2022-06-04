@@ -92,13 +92,13 @@
                                         if (file_exists($avatar_path)) {
                                             echo ('
                                                 <div class="avatar-place">
-                                                    <img src="img/estateAvatars/'. $estateId.'.png" style="max-width: 400px;">
+                                                    <img src="img/estateAvatars/'. $estateId.'.png" class="img-fluid w-100" style="max-width: 400px;">
                                                 </div>
                                             ');
                                         } else {
                                             echo ('
                                                 <div class="avatar-place">
-                                                    <img src="img/estate-placeholder.svg" alt="zdjęcie osiedla" class="img-fluid" style="max-width: 400px;">
+                                                    <img src="img/estate-placeholder.svg" alt="zdjęcie osiedla" class="img-fluid w-100" style="max-width: 400px;">
                                                 </div>
                                             ');
                                         }
