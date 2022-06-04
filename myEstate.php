@@ -88,6 +88,38 @@
         unset($_SESSION['deltePostError']);
     }
 
+    if(isset($_SESSION['addCommentPostSuccess']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['addCommentPostSuccess'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['addCommentPostSuccess']);
+    }
+
+    if(isset($_SESSION['addCommentPostError']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['addCommentPostError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['addCommentPostError']);
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -177,10 +209,50 @@
                                             <hr class="w-100" style="color: rgba(0,0,0,0.2);">
 
                                             <div class="d-flex">
+                                            <span class="postIdCtn d-none">' . $postId . '</span>
+                                            <span class="estateIdCtn d-none">' . $postIdEstate . '</span>
                                             <a href="#" class="text-primary text-decoration-none me-3"><i class="bx bxs-like text-primary"></i> Polub</a>
-                                            <a href="#" class="text-secondary text-decoration-none"><i class="bx bxs-comment text-secondary" ></i> Skomentuj</a>
+                                            <a data-bs-toggle="modal" data-bs-target="#addcommentpost" class="text-secondary text-decoration-none makePostCommentBtn"><i class="bx bxs-comment text-secondary"></i> Skomentuj</a>
                                         </div>
-                                    </div>
+                                    </div>');
+                                     $sql = "SELECT * FROM Comments WHERE IdPost=" . $postId . ";";
+
+                                     $resultComments = $connect->query($sql);
+                                     if($resultComments->num_rows > 0)
+                                     {
+                                         echo "<div class='postComments'>";
+                                        while($rowComment = $resultComments->fetch_assoc())
+                                        {
+                                            echo "<div class='postComment'">
+                                            $sqlUser = "SELECT Users.Id, Users.Name, Users.Surname FROM Users WHERE Id=" . $rowComment['IdAuthor'] . ";";
+                                            $resultUser = $connect->query($sqlUser);
+                                            if($resultUser->num_rows == 1)
+                                            {
+                                                $rowUser = $resultUser->fetch_assoc();
+
+                                                $avatarPath = "img/avatars/" . $rowUser['Id'] . ".png";
+
+                                                if (file_exists($avatarPath))
+                                                {
+                                                    echo "<div class='avatar-place'>
+                                                        <img class='img-fluid' src='" . $avatarPath . "' alt='Zdjęcie profilowe'>
+                                                    </div>";
+                                                }
+                                                else
+                                                {
+                                                    echo "<div class='avatar-place'>
+                                                        <img class='profile-avatar' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe'>
+                                                    </div>";
+                                                }
+
+                                                echo "<a class='user-name' target='_blank' href='profile?user='" . $rowUser['Id'] . "'>" . $rowUser['Name'] . " " . $rowUser['Surname'] . "</a>";
+                                                echo "<span class='commentDate'>" . $rowComment['Date'] . "</span>";
+                                            }
+                                            echo "<p class='comment-content'>" . $rowComment['TextContent'] . "</p>";
+                                        }
+                                        echo "</div>";
+                                     }
+                            echo ('
                                 </div>
                             </div>
                             ');
@@ -190,40 +262,6 @@
                         
                     } 
                 ?>
-
-                <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-6">
-                    <div class="bg-white p-3 rounded shadow-sm mb-3">
-                        <div class="d-flex flex-wrap">
-                            <!-- Post Author -->
-                            <div class="d-flex align-items-center">
-                                <div class="avatar-place">
-                                    <img src="img/avatars/avatarPlaceholder.png" class="img-fluid rounded-pill me-2" alt="Zdjęcie użytkownika Patryk Kowalski" style="max-width: 50px;">
-                                </div>
-
-                                <div class="d-flex flex-column">
-                                    <span class="text-muted"><b>Maks Śniegocki</b> - dodał nowy post (ten post jest w <code>html</code>)</span>
-                                    <small class="text-muted">02.06.2022 19:30</small>
-                                </div>
-                            </div>
-
-                            <hr class="w-100">
-
-                            <!-- Post Content -->
-                            <p class="text-muted">Cieszę się z Pride Month!</p>
-                            <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa aliquid recusandae eveniet amet quidem incidunt esse nostrum quaerat. Laudantium sed est, ullam, similique recusandae ea ab harum voluptatum quod velit, ipsam at. Quis debitis, optio voluptates quos soluta autem quod! ⚠</p>
-                            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ducimus maxime nihil neque est magnam debitis consequatur commodi velit deleniti! 🤣</p>
-
-                            <!-- Post Footer -->
-                            <hr class="w-100" style="color: rgba(0,0,0,0.2);">
-
-                            <div class="d-flex">
-                                <a href="#" class="text-primary text-decoration-none me-3"><i class='bx bxs-like text-primary'></i> Polub</a>
-                                <a href="#" class="text-secondary text-decoration-none"><i class='bx bxs-comment text-secondary' ></i> Skomentuj</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </div>
@@ -266,6 +304,54 @@
         </div>
     </div>
 
+    <!-- Add comment modal -->
+    <div class="modal fade" id="addcommentpost" tabindex="-1" aria-labelledby="addcommentpost" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addcomment">Dodaj komentarz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <form action="PHPMethods/addComment_script" method="POST">
+
+                    <input type="text" max="60" name="postId" id="postId" class="form-control" value="" autocomplete="off" style="display: none;">
+                    <input type="text" max="60" name="estateId" id="estateId" class="form-control" value="" autocomplete="off" style="display: none;">
+
+                    <label for="postComment" class="form-label mb-1 mt-3">Komentarz: </label>
+                    <textarea class="form-control" name="postComment" id="postComment" cols="30" rows="10" required></textarea>
+                    
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Anuluj</button>
+                    <button type="submit" name="editEstate" class="btn btn-success">Dodaj komentarz</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            //Add comment modal data =>
+            document.querySelectorAll(".makePostCommentBtn").forEach(o => {
+                o.addEventListener("click", ()=> {
+                    let postId = o.parentNode.querySelector(".postIdCtn").outerText;
+                    let estateId = o.parentNode.querySelector(".estateIdCtn").outerText;
+                    
+                    var postIdInput = document.querySelector("#addcommentpost #postId");
+                    var estateIdInput = document.querySelector("#addcommentpost #estateId");
+
+                    postIdInput.value = postId;
+                    estateIdInput.value = estateId;
+                });
+            });
+            //<=Add comment modal data 
+        });  
+
+    </script>
     <script src="js/toast.js"></script>
     <script src="js/tooltips.js"></script>
 </body>
