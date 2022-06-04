@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row justify-content-center align-items-center" style="height: 100vh;">
 
-                <div class="col-5 d-flex flex-column align-items-center justify-content-center">
+                <div class="col-12 col-md-5 d-flex flex-column align-items-center justify-content-center">
                     <img src="img/hoodbook_logo_horizontal.svg" alt="Hoodbook Logo" class="img-fluid w-75 py-3">
 
                     <form method="POST" action="PHPMethods/signIn_script" class="mt-5 w-100 px-5 pt-4 pb-3 rounded-3 shadow-sm bg-light">
