@@ -212,52 +212,61 @@
                                             <span class="postIdCtn d-none">' . $postId . '</span>
                                             <span class="estateIdCtn d-none">' . $postIdEstate . '</span>
                                             <a href="#" class="text-primary text-decoration-none me-3"><i class="bx bxs-like text-primary"></i> Polub</a>
-                                            <a data-bs-toggle="modal" data-bs-target="#addcommentpost" class="text-secondary text-decoration-none makePostCommentBtn"><i class="bx bxs-comment text-secondary"></i> Skomentuj</a>
+                                            <a data-bs-toggle="modal" data-bs-target="#addcommentpost" class="text-secondary text-decoration-none makePostCommentBtn" style="cursor: pointer;"><i class="bx bxs-comment text-secondary"></i> Skomentuj</a>
                                         </div>
                                     </div>');
+
+
                                      $sql = "SELECT * FROM Comments WHERE IdPost=" . $postId . ";";
 
                                      $resultComments = $connect->query($sql);
-                                     if($resultComments->num_rows > 0)
-                                     {
-                                        echo "<div class='postComments'>";
-                                        while($rowComment = $resultComments->fetch_assoc())
-                                        {
-                                            echo "<div class='postComment'">
+                                     if($resultComments->num_rows > 0) {
+                                        echo "<div class='postComments mt-3 '>";
+
+                                        while($rowComment = $resultComments->fetch_assoc()) {
+                                            echo "<div class='postComment bg-light px-3 py-2 mb-3 rounded-3 position-relative w-100'>";
                                             $sqlUser = "SELECT Users.Id, Users.Name, Users.Surname FROM Users WHERE Id=" . $rowComment['IdAuthor'] . ";";
                                             $resultUser = $connect->query($sqlUser);
-                                            if($resultUser->num_rows == 1)
-                                            {
-                                                $rowUser = $resultUser->fetch_assoc();
 
+                                            if($resultUser->num_rows == 1) {
+                                                $rowUser = $resultUser->fetch_assoc();
                                                 $avatarPath = "img/avatars/" . $rowUser['Id'] . ".png";
 
-                                                if (file_exists($avatarPath))
-                                                {
-                                                    echo "<div class='avatar-place'>
-                                                        <img class='img-fluid' src='" . $avatarPath . "' alt='Zdjęcie profilowe'>
-                                                    </div>";
+                                                echo ('<div class="d-flex ">');
+
+                                                if (file_exists($avatarPath)) {
+                                                    echo "
+                                                        <div class='avatar-place'>
+                                                            <img class='img-fluid rounded-pill' src='" . $avatarPath . "' alt='Zdjęcie profilowe' style='max-width: 50px;'>
+                                                        </div>";
+                                                } else {
+                                                    echo "
+                                                        <div class='avatar-place'>
+                                                            <img class='profile-avatar' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe' style='max-width: 50px;'>
+                                                        </div>";
                                                 }
-                                                else
-                                                {
-                                                    echo "<div class='avatar-place'>
-                                                        <img class='profile-avatar' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe'>
-                                                    </div>";
-                                                }
+                                                
+                                                echo ('<div class="d-flex flex-column ms-3 w-100 ">');
 
-                                                echo "<a class='user-name' target='_blank' href='profile?user='" . $rowUser['Id'] . "'>" . $rowUser['Name'] . " " . $rowUser['Surname'] . "</a>";
-                                                echo "<span class='commentDate'>" . $rowComment['Date'] . "</span>";
-                                            }
-                                            echo "<p class='comment-content'>" . $rowComment['TextContent'] . "</p>";
+                                                    echo "
+                                                        <a class='user-name fw-bold text-decoration-none' target='_blank' href='profile?user='" . $rowUser['Id'] . "'>" . $rowUser['Name'] . " " . $rowUser['Surname'] . "<i class='fw-light text-muted'> - skomentował:</i></a>
+                                                        <span class='commentDate text-muted fw-light border-bottom pb-1'>" . $rowComment['Date'] . "</span>
 
-                                            //delete comment button
-                                            if ($postIdAuthor == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
-                                                echo "<a href='deleteComment?commentId=$postId&estateId=$postIdEstate' class='delete-comment' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
-                                            } 
 
+                                                        <p class='comment-content mt-2 mb-0 text-muted'>" . $rowComment['TextContent'] . "</p>
+                                                        ";
+                                                echo "</div>";
+
+                                                //delete comment button
+                                                if ($postIdAuthor == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
+                                                    echo "<a href='deleteComment?commentId=$postId&estateId=$postIdEstate' class='delete-post' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
+                                                } 
+                                                
+                                                echo "</div>";
                                             echo "</div>";
+                                            }
                                         }
-                                        echo "</div>";
+                                        
                                      }
                             echo ('
                                 </div>
