@@ -51,7 +51,26 @@
                                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                                     <div class="d-flex flex-column bg-white rounded shadow align-items-center p-3">
                                         <h3 class="h3 text-center">'.$estateName.'</h3>
-                                        <img src="img/estate-placeholder.svg" alt="zdjęcie osiedla" class="img-fluid">
+                                        ');
+
+                                        //Estate avatar
+                                        $avatar_path = "./img/estateAvatars/" . $estateId . ".png";
+
+                                        if (file_exists($avatar_path)) {
+                                            echo ('
+                                                <div class="avatar-place">
+                                                    <img src="img/estateAvatars/'. $estateId.'.png" style="max-width: 400px;">
+                                                </div>
+                                            ');
+                                        } else {
+                                            echo ('
+                                                <div class="avatar-place">
+                                                    <img src="img/estate-placeholder.svg" alt="zdjęcie osiedla" class="img-fluid" style="max-width: 400px;">
+                                                </div>
+                                            ');
+                                        }
+
+                                        echo ('
                                         <p class="text-muted mt-2 mb-0">'.$estateStreet.', '.$estateZipCode.', '.$estateCity.' '.$estateCountry.'</p>
                                         <!--<p class="text-muted mt-2">Liczba mieszkańców: '.$estateUsersCount.'</p>-->
 
