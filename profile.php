@@ -73,27 +73,11 @@
         unset($_SESSION['ProfileUserPassEditError']);
     }
 
-    if(isset($_SESSION['profileEditAvatarError']))
-    {
-        echo "
-        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
-            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
-                <div class='d-flex'>
-                    <div class='toast-body'>" .
-                        $_SESSION['profileEditAvatarError'] .
-                    "</div>
-                </div>
-            </div>
-        </div>";
-
-        unset($_SESSION['profileEditAvatarError']);
-    }
-
     if(isset($_SESSION['profileEditAvatarSuccess']))
     {
         echo "
         <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
-            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
                 <div class='d-flex'>
                     <div class='toast-body'>" .
                         $_SESSION['profileEditAvatarSuccess'] .
@@ -104,6 +88,22 @@
 
         unset($_SESSION['profileEditAvatarSuccess']);
     }
+
+    if(isset($_SESSION['profileEditAvatarError']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['profileEditAvatarError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['profileEditAvatarError']);
+    }
     
 ?>
 
@@ -113,6 +113,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Expires" content="Tue, 01 Jan 1995 12:12:12 GMT">
+    <meta http-equiv="Pragma" content="no-cache">
     <title>HoodBook | Mój profil</title> 
     <?php include "meta.php"; ?>
 </head>
@@ -332,5 +334,6 @@
             </div>
         </div>
     </div>
+    <script src="js/toast.js"></script>
 </body>
 </html>

@@ -72,6 +72,38 @@
 
         unset($_SESSION['editEstateError']);
     }
+
+    if(isset($_SESSION['estateAvatarEditSuccess']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['estateAvatarEditSuccess'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['estateAvatarEditSuccess']);
+    }
+
+    if(isset($_SESSION['estateAvatarEditError']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['estateAvatarEditError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['estateAvatarEditError']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -118,7 +150,7 @@
                             <th>Kraj</th>
                             <th>Liczba użytkowników</th>
                             <th>Data stworzenia</th>
-                            <th colspan="1">Akcja</th>
+                            <th colspan="2">Akcja</th>
                         </tr>
                 TABLE;
 
@@ -137,7 +169,7 @@
                     echo "<tr>";
 
                     echo "<td>" . $estateId . "</td>";
-                    echo "<td>" . $estateName . "</td>";
+                    echo "<td><a target='_blank' href='checkEstate?estate=" . $estateId . "'>" . $estateName . "</a></td>";
                     echo "<td>" . $estateStreet . "</td>";
                     echo "<td>" . $estateCity . "</td>";
                     echo "<td>" . $estateZipCode . "</td>";
@@ -145,6 +177,7 @@
                     echo "<td class='no-sql'>" . $estateUsersCount . "</td>";
                     echo "<td class='no-sql'>" . $estateCreationDate . "</td>";
                     echo "<td class='no-sql'><button class='btn btn-secondary no-sql editEstateBtn' data-bs-toggle='modal' data-bs-target='#editestate'>Edytuj informacje</button></td>";
+                    echo "<td class='no-sql'><button class='btn btn-secondary no-sql editAvatar' data-bs-toggle='modal' data-bs-target='#editavatar'>Edytuj avatar</button></td>";
                     echo "</tr>";
                 }
 
@@ -240,6 +273,38 @@
         </div>
     </div>
 
+    <!-- Edit Estate avatar modal -->
+    <div class="modal fade" id="editavatar" tabindex="-1" aria-labelledby="editavatar" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editinfo">Edytuj osiedle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+
+                <div class="modal-body avatar-place">
+                    <form action="PHPMethods/AdminMethods/editEstateAvatar_script" method="POST" enctype="multipart/form-data">
+                    <input type="text" max="60" name="estateIdAvatar" id="estateIdAvatar" class="form-control" value="" autocomplete="off" required style="display: none;">
+                    <p class="text-muted">Avatar powinien mieć rozmiary 300x300 pikseli lub proporcje 1:1 (kwadrat). Tylko pliki JPG, JPEG, PNG & GIF nie przekraczające 5MB.</p>
+
+                    <div class="mt-3">
+                        <label for="formFile" class="form-label">Dodaj nowy awatar:</label>
+                        <input class="form-control" name="avatar" type="file" id="avatar">
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Anuluj</button>
+                    <button type="submit" name="editEstate" class="btn btn-success">Edytuj avatar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         window.addEventListener("DOMContentLoaded", () => {
             //Edit estate data model =>
@@ -262,6 +327,18 @@
                 });
             });
             //<=Edit estate data modal 
+
+            //Edit estate avatar =>
+            document.querySelectorAll(".editAvatar").forEach((o) => {
+                o.addEventListener("click", () => {
+                    var id = o.parentNode.parentNode.querySelector("td:first-of-type").outerText;
+                    var editAvatarId = document.querySelector("#editavatar #estateIdAvatar");
+
+                    editAvatarId.value = id;
+                });
+            });
+
+            //<=Edit estate avatar
 
             //Toast=>
             var toastElList = [].slice.call(document.querySelectorAll('.toast'))

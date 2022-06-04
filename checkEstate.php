@@ -51,6 +51,14 @@
                                         $estateCity = $row['City'];
                                         $estateCountry = $row['Country'];
 
+                                        //Estate avatar
+                                        $avatar_path = "./img/estateAvatars/" . $estateId . ".png";
+
+                                        if (file_exists($avatar_path)) {
+                                            echo ('<img src="img/estateAvatars/'. $estateId.'.png">');
+                                        } else {
+                                            echo ('<img src="img/estateAvatars/estate-placeholder.svg">');
+                                        }
                                         //User name
                                         echo "<p class='profile-name'>Nazwa: <span class='text-muted'>" . $estateName . "</span></p>";
                                         //User surname

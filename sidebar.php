@@ -57,7 +57,7 @@
           <li><a class="link_name" href="#">Administracja</a></li>
           <li><a href="adminPanelUsers">Zarządzaj użytkownikami</a></li>
           <li><a href="adminPanelEstates">Zarządzaj osiedlami</a></li>
-          <li><a href="adminPanelApplications">Przeglądaj zgłoszenia</a></li>
+          <li><a href="adminPanelApplications">Zarządzaj zgłoszeniami</a></li>
         </ul>
       </li>
      ');
