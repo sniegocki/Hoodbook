@@ -186,27 +186,27 @@
 
                                 echo ('
                                     <div class="d-flex flex-wrap">
-                                    <!-- Post Author -->
-                                    <div class="d-flex align-items-center">
+                                        <!-- Post Author -->
+                                                    <div class="d-flex align-items-center">
 
-                                    ');
+                                                    ');
 
-                                    $avatarPath = "img/avatars/" . $userId . ".png";
+                                                    $avatarPath = "img/avatars/" . $userId . ".png";
 
-                                    if (file_exists($avatarPath)) {
-                                        echo "
-                                            <div class='avatar-place'>
-                                                <img class='img-fluid rounded-pill me-2' src='" . $avatarPath . "' alt='Zdjęcie profilowe' style='max-width: 50px;'>
-                                            </div>";
-                                    } else {
-                                        echo "
-                                            <div class='avatar-place'>
-                                                <img class='profile-avatar rounded-pill me-2' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe' style='max-width: 50px;'>
-                                            </div>";
-                                    }
+                                                    if (file_exists($avatarPath)) {
+                                                        echo "
+                                                            <div class='avatar-place'>
+                                                                <img class='img-fluid rounded-pill me-2' src='" . $avatarPath . "' alt='Zdjęcie profilowe' style='max-width: 50px;'>
+                                                            </div>";
+                                                    } else {
+                                                        echo "
+                                                            <div class='avatar-place'>
+                                                                <img class='profile-avatar rounded-pill me-2' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe' style='max-width: 50px;'>
+                                                            </div>";
+                                                    }
 
-                                        
-                            echo ('
+                                                        
+                                            echo ('
 
                                             <div class="d-flex flex-column">
                                                 <span class="text-muted"><b>'.$userName.' '.$userSurname.'</b> - dodał nowy post</span>
@@ -229,16 +229,10 @@
                                             <span class="estateIdCtn d-none">' . $postIdEstate . '</span>');
 
                                             //count likes
-                                            $sqlCount = "SELECT count(*) FROM ReactionsPosts WHERE IdPost=" . $postId . " GROUP BY IdPost;";
+                                            $sqlCount = "SELECT count(*) AS 'LikesCount' FROM ReactionsPosts WHERE IdPost=" . $postId . " GROUP BY IdPost;";
                                             $resultCount = $connect->query($sqlCount);
-                                            $commentsCount = 0;
-                                            if($resultCount->num_rows > 0)
-                                            {
-                                                while($row = $resultCount->fetch_assoc())
-                                                {
-                                                    $commentsCount++;
-                                                }
-                                            }
+                                            $row = $resultCount->fetch_assoc();
+                                            $commentsCount = $row['LikesCount'];
 
                                             //like, dislike post
                                             $sqlPost = "SELECT * FROM ReactionsPosts WHERE IdPost=" . $postId . " AND IdAuthor=" . $_SESSION['loggedUser'] . ";";
