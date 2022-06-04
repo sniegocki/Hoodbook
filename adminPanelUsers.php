@@ -198,10 +198,10 @@
                     <input type="text" max="60" name="userEmail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" id="userEmail" class="form-control" value="" autocomplete="off" required>
 
                     <label for="userName" class="form-label mb-1 mt-3">Imię: </label>
-                    <input type="text" max="60" name="userName" id="userName" class="form-control" value="" autocomplete="off" required>
+                    <input type="text" max="60" name="userName" id="userName" class="form-control" value="" autocomplete="off" required pattern="[A-Za-z]{25}">
 
                     <label for="userSurname" class="form-label mb-1 mt-3">Nazwisko: </label>
-                    <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="" autocomplete="off" required>
+                    <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="" autocomplete="off" required pattern="[A-Za-z]{25}">
 
                     <label for="userPhone" class="form-label mb-1 mt-3">Telefon: </label>
                     <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="" autocomplete="off" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
@@ -246,10 +246,10 @@
                     <input type="text" max="60" name="userEmail" id="userEmail" class="form-control" value="" autocomplete="off" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
 
                     <label for="userName" class="form-label mb-1 mt-3">Imię: </label>
-                    <input type="text" max="60" name="userName" id="userName" class="form-control" value="" autocomplete="off" required>
+                    <input type="text" max="60" name="userName" id="userName" class="form-control" value="" autocomplete="off" required pattern="[A-Za-z]{25}">
 
                     <label for="userSurname" class="form-label mb-1 mt-3">Nazwisko: </label>
-                    <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="" autocomplete="off" required>
+                    <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="" autocomplete="off" required pattern="[A-Za-z]{25}">
 
                     <label for="userPhone" class="form-label mb-1 mt-3">Telefon: </label>
                     <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="" autocomplete="off" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
