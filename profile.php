@@ -172,13 +172,13 @@
                     <div class="modal-body">
                         <form action="PHPMethods/profileEdit_script" method="POST">
                         <label for="userName" class="form-label mb-1 mt-3">Imię: </label>
-                        <input type="text" max="60" name="userName" id="userName" class="form-control" value="<?php echo $userName; ?>" autocomplete="off" required pattern="[A-Za-z]{25}">
+                        <input type="text" max="60" name="userName" id="userName" class="form-control" value="<?php echo $userName; ?>" autocomplete="off" required>
 
                         <label for="userSurname" class="form-label mb-1 mt-3">Nazwisko: </label>
-                        <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="<?php echo $userSurname; ?>" autocomplete="off" required pattern="[A-Za-z]{25}">
+                        <input type="text" max="60" name="userSurname" id="userSurname" class="form-control" value="<?php echo $userSurname; ?>" autocomplete="off" required>
 
                         <label for="userPhone" class="form-label mb-1 mt-3">Telefon: </label>
-                        <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="<?php echo $userPhone; ?>" autocomplete="off" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">>
+                        <input type="tel" max="15" name="userPhone" id="userPhone" class="form-control" value="<?php echo $userPhone; ?>" autocomplete="off">
 
                         <label for="userAddress" class="form-label mb-1 mt-3">Adres: </label>
                         <input type="text" max="60" name="userAddress" id="userAddress" class="form-control" value="<?php echo $userAddress; ?>" autocomplete="off">

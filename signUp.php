@@ -41,13 +41,13 @@
                         <form method="POST" action="PHPMethods/signUp_script" class="px-5">
                             <p class="fs-5 text-muted">Wypełnij formularz rejestracyjny aby utworzyć swoje konto.</p>
                             <label for="name" class="form-label mt-3">Imię:</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Wprowadź swoje imię..." required autocomplete="name" pattern="[A-Za-z]{25}">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Wprowadź swoje imię..." required autocomplete="name">
 
                             <label for="surname" class="form-label mt-4">Nazwisko:</label>
-                            <input type="text" name="surname" id="surname" class="form-control" placeholder="Wprowadź swoje nazwisko..." required autocomplete="surname" pattern="[A-Za-z]{25}">
+                            <input type="text" name="surname" id="surname" class="form-control" placeholder="Wprowadź swoje nazwisko..." required autocomplete="surname">
 
                             <label for="email" class="form-label mt-4">Email:</label>
-                            <input type="email" name="email" id="email" class="form-control" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" placeholder="Wprowadź swój adres e-mail..." required autocomplete="email">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Wprowadź swój adres e-mail..." required autocomplete="email">
 
                             <label for="pass" class="form-label mt-4">Hasło:</label>
                             <!--Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character-->
