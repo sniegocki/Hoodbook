@@ -21,7 +21,7 @@
                 <div class="col-5 d-flex flex-column align-items-center justify-content-center">
                     <img src="img/hoodbook_logo_horizontal.svg" alt="Hoodbook Logo" class="img-fluid w-75 py-3">
 
-                    <form method="POST" action="PHPMethods/signIn_script" class="mt-5 w-100 p-5 rounded-3 shadow-sm bg-light">
+                    <form method="POST" action="PHPMethods/signIn_script" class="mt-5 w-100 px-5 pt-4 pb-3 rounded-3 shadow-sm bg-light">
                         <h1 class="h4 text-center fs-5 mb-3 d-none">Panel logowania:</h1>
                         <label for="email" class="form-label">Email:</label>
                         <input type="email" name="email" id="email" placeholder="Wprowadź swój adres e-mail..." class="form-control" required autocomplete="email">
@@ -32,45 +32,49 @@
 
                         <input type="submit" value="Zaloguj" name="submit" class="btn btn-primary w-100 mt-4">
 
-                        <?php
-                            if (isset($_SESSION['signUp_success']))
-                            {
+                        <div class="text-center mt-3 text-muted">Nie masz jeszcze konta? <a href="signUp" class="text-secondary">Zarejestruj się</a></div>
 
-                                echo ('
-                                    <div class="alert alert-success mt-3" role="alert" data-aos="fade-down">');
-                                        echo $_SESSION['signUp_success'];
-                                echo ('
-                                    </div>
-                                ');
+                    </form>
 
-                                unset($_SESSION['signUp_success']);
-                            }
-                            
-                            if (isset($_SESSION['signIn_error']))
-                            {
-                                echo ('
-                                    <div class="alert alert-danger mt-3" role="alert" data-aos="fade-down">');
-                                        echo $_SESSION['signIn_error'];
-                                echo ('
-                                    </div>
-                                ');
-                                unset($_SESSION['signIn_error']);
-                            }
-                      
-                          if(isset($_SESSION['signOut_success']))
-                          {
+                    <?php
+                        if (isset($_SESSION['signUp_success']))
+                        {
                             echo ('
-                                <div class="alert alert-success mt-3" role="alert" data-aos="fade-down">');
-                            echo $_SESSION['signOut_success'];
+                                <div class="alert alert-success mt-3 w-100" role="alert" data-aos="fade-down">');
+                                    echo $_SESSION['signUp_success'];
                             echo ('
                                 </div>
                             ');
-                              unset($_SESSION['signOut_success']);
-                          }
-                        ?>
-                    </form>
+
+                            unset($_SESSION['signUp_success']);
+                        }
+                        
+                        if (isset($_SESSION['signIn_error']))
+                        {
+                            echo ('
+                                <div class="alert alert-danger mt-3 w-100" role="alert" data-aos="fade-down">');
+                                    echo $_SESSION['signIn_error'];
+                            echo ('
+                                </div>
+                            ');
+                            unset($_SESSION['signIn_error']);
+                        }
+                    
+                        if(isset($_SESSION['signOut_success'])) {
+                        echo ('
+                            <div class="alert alert-success mt-3 w-100" role="alert" data-aos="fade-down">');
+                        echo $_SESSION['signOut_success'];
+                        echo ('
+                            </div>
+                        ');
+                            unset($_SESSION['signOut_success']);
+                        }
+                    ?>
+                        
                 </div>
                 
+                
+
             </div>
         </div>
         
