@@ -1,4 +1,6 @@
 <?php
+    //signUp script
+
     //check passed data if exists
     if(!isset($_POST['name']) || !isset($_POST['surname']) || !isset($_POST['email']) || !isset($_POST['pass']) || !isset($_POST['passRepeat']))
     {

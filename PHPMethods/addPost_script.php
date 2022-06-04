@@ -1,4 +1,5 @@
 <?php
+    //add post
     @session_start();
 
     if(!isset($_SESSION['loggedUser']))

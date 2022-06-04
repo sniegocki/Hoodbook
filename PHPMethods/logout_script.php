@@ -1,5 +1,5 @@
 <?php
-
+    //logout script
     @session_start();
     @session_destroy();
     @session_unset();

@@ -120,6 +120,38 @@
         unset($_SESSION['addCommentPostError']);
     }
 
+    if(isset($_SESSION['deleteCommentSuccess']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['deleteCommentSuccess'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['deleteCommentSuccess']);
+    }
+
+    if(isset($_SESSION['deleteCommentError']))
+    {
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['deleteCommentError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
+
+        unset($_SESSION['deleteCommentError']);
+    }
+
 ?>
 
 <!DOCTYPE html>

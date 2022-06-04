@@ -107,7 +107,15 @@
 
         <div class="name-job">
           <div class="profile_name">
-            <?php echo $_SESSION['loggedUser'];?>
+            <?php
+            
+              //display user name and surname
+              $sql = "SELECT Users.Name, Users.Surname FROM Users WHERE Id=" . $_SESSION['loggedUser'] . ";";
+              require "PHPMethods/connect.php";
+              $result = $connect->query($sql);
+              $row = $result->fetch_assoc();
+              echo $row["Name"] . " " . $row['Surname'];
+            ?>
           </div>
         </div>
       </div>

@@ -11,42 +11,96 @@
     //prompt success or error status
     if(isset($_SESSION['profileUserUpdateSuccess']))
     {
-        //wyświetlenie tosta z sukcecem zmiany danych
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['profileUserUpdateSuccess'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
 
         unset($_SESSION['profileUserUpdateSuccess']);
     }
 
     if(isset($_SESSION['profileUserUpdateError']))
     {
-        //wyświetlenie tosta z bledem zmiany danych
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['profileUserUpdateError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
 
         unset($_SESSION['profileUserUpdateError']);
     }
 
     if(isset($_SESSION['ProfileUserPassEditSuccess']))
     {
-        //wyświetlenie tosta z sukcesem zmiany hasla
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['ProfileUserPassEditSuccess'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
 
         unset($_SESSION['ProfileUserPassEditSuccess']);
     }
 
     if(isset($_SESSION['ProfileUserPassEditError']))
     {
-        //wyświetlenie tosta z bledem zmiany hasla
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['ProfileUserPassEditError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
 
         unset($_SESSION['ProfileUserPassEditError']);
     }
 
     if(isset($_SESSION['profileEditAvatarError']))
     {
-        //wyświetlenie tosta z bledem wskazaniem pliku awataru
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-success border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='2000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['profileEditAvatarError'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
 
         unset($_SESSION['profileEditAvatarError']);
     }
 
     if(isset($_SESSION['profileEditAvatarSuccess']))
     {
-        //wyświetlenie tosta z sucesem przeslania avataru
+        echo "
+        <div class='position-fixed top-0 end-0 p-3' style='z-index: 11;'>
+            <div class='toast align-items-center text-white bg-toast-error border-0' role='alert' aria-live='assertive' aria-atomic='true' data-bs-delay='10000'>
+                <div class='d-flex'>
+                    <div class='toast-body'>" .
+                        $_SESSION['profileEditAvatarSuccess'] .
+                    "</div>
+                </div>
+            </div>
+        </div>";
 
         unset($_SESSION['profileEditAvatarSuccess']);
     }

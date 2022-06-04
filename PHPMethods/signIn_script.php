@@ -1,5 +1,6 @@
 <?php
 
+    //signIn script
     if(!isset($_POST['email']) || !isset($_POST['pass']))
     {
         header("Location: javascript:history.go(-1)");
@@ -15,12 +16,15 @@
 
         $result = $connect->query($sql);
 
+        //user exists
         if($result->num_rows == 1)
         {
             $row = $result->fetch_assoc();
-    
+            
+            //check if password is valid
             if(password_verify($_POST['pass'], $row['Password']))
             {
+                //check if user is not banned
                 if($row['Permission'] == 0)
                 {
                     $_SESSION['signIn_error'] = "Twoje konto jest zablokowane";

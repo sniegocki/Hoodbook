@@ -1,4 +1,6 @@
 <?php
+    //user send request to join estate
+
     @session_start();
 
     if(!isset($_SESSION['loggedUser']))

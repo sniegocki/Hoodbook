@@ -1,5 +1,6 @@
 <?php
 
+    //Edit user password as user
     @session_start();
 
     if(!isset($_SESSION['loggedUser']))
@@ -25,6 +26,7 @@
 
     if(!$connect->connect_error)
     {
+        //pasword hash
         $passHash = password_hash($_POST['pass'], PASSWORD_BCRYPT);
         $sql = "UPDATE UsersAccount SET Password='" . $passHash . "' WHERE Id=" . $_SESSION['loggedUser'] . ";";
         

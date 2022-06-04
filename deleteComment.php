@@ -34,7 +34,7 @@
     try 
     {
         $connect->query($sql);
-        $_SESSION['deleteCommentSuccess'] = "Pomyślnie usunięto post.";
+        $_SESSION['deleteCommentSuccess'] = "Pomyślnie usunięto komentarz.";
     }
     catch(Exception $e)
     {

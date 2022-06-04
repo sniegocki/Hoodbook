@@ -1,4 +1,5 @@
 <?php
+    //edit user avatar
 
     @session_start();    
 
@@ -30,8 +31,10 @@
 
     if(in_array($fileExt, $allowed))
     {
+        //file not error
         if($fileError === 0)
         {
+            //file size check
             if($fileSize <= 5000000)
             {
                 $newFileName = $_SESSION['loggedUser'] . ".png";
@@ -41,6 +44,7 @@
 
                 try
                 {
+                    //move file to folder
                     move_uploaded_file($fileTmp, $fileDest);
                     $_SESSION['profileEditAvatarSuccess'] = "Zdjęcie zostało zmienione";
                 }

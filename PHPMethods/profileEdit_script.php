@@ -1,4 +1,6 @@
 <?php
+
+    //edit user profile as user
     @session_start();
 
     if(!isset($_SESSION['loggedUser']))

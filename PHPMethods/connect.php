@@ -1,5 +1,6 @@
 <?php
 
+    //connection for all files
     $connect;
 
     try
