@@ -186,11 +186,27 @@
 
                                 echo ('
                                     <div class="d-flex flex-wrap">
-                                        <!-- Post Author -->
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar-place">
-                                                <img src="img/avatars/'.$userId.'.png" class="img-fluid rounded-pill me-2" alt="Zdjęcie użytkownika '.$userName.' '.$userSurname.'" style="max-width: 50px;">
-                                            </div>
+                                    <!-- Post Author -->
+                                    <div class="d-flex align-items-center">
+
+                                    ');
+
+                                    $avatarPath = "img/avatars/" . $userId . ".png";
+
+                                    if (file_exists($avatarPath)) {
+                                        echo "
+                                            <div class='avatar-place'>
+                                                <img class='img-fluid rounded-pill me-2' src='" . $avatarPath . "' alt='Zdjęcie profilowe' style='max-width: 50px;'>
+                                            </div>";
+                                    } else {
+                                        echo "
+                                            <div class='avatar-place'>
+                                                <img class='profile-avatar rounded-pill me-2' src='" . "img/avatars/avatarPlaceholder.png" . "' alt='Zdjęcie profilowe' style='max-width: 50px;'>
+                                            </div>";
+                                    }
+
+                                        
+                            echo ('
 
                                             <div class="d-flex flex-column">
                                                 <span class="text-muted"><b>'.$userName.' '.$userSurname.'</b> - dodał nowy post</span>
