@@ -1,4 +1,6 @@
 <?php
+    //delete comment script
+    //need logged user, comment id, estate id
 
     @session_start();
 
@@ -11,7 +13,7 @@
     require "PHPMethods/connect.php";
 
     //get post creator(user) id
-    $preSql = "SELECT * FROM Posts WHERE Id=" . $_GET['postId'] . ";";
+    $preSql = "SELECT * FROM Comments WHERE Id=" . $_GET['commentId'] . ";";
     $result = $connect->query($preSql);
     $userId;
     if($result->num_rows > 0)
@@ -27,16 +29,16 @@
         exit(0);
     }
 
-    $sql = "DELETE FROM Posts WHERE Id=" . $_GET['postId'] . ";";
+    $sql = "DELETE FROM Comments WHERE Id=" . $_GET['commentId'] . ";";
 
     try 
     {
         $connect->query($sql);
-        $_SESSION['deltePostSucces'] = "Pomyślnie usunięto post.";
+        $_SESSION['deleteCommentSuccess'] = "Pomyślnie usunięto post.";
     }
     catch(Exception $e)
     {
-        $_SESSION['deletePostError'] = $e;
+        $_SESSION['deleteCommentError'] = $e;
     }
 
     $href = "Location: myEstate?estate=" . $_GET['estateId'];

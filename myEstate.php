@@ -220,11 +220,14 @@
                                      $sql = "SELECT * FROM Comments WHERE IdPost=" . $postId . ";";
 
                                      $resultComments = $connect->query($sql);
+
                                      if($resultComments->num_rows > 0) {
                                         echo "<div class='postComments mt-3 '>";
 
                                         while($rowComment = $resultComments->fetch_assoc()) {
                                             echo "<div class='postComment bg-light px-3 py-2 mb-3 rounded-3 position-relative w-100'>";
+                                            $commentId = $rowComment['Id'];
+                                          
                                             $sqlUser = "SELECT Users.Id, Users.Name, Users.Surname FROM Users WHERE Id=" . $rowComment['IdAuthor'] . ";";
                                             $resultUser = $connect->query($sqlUser);
 
@@ -252,6 +255,10 @@
                                                         <a class='user-name fw-bold text-decoration-none' target='_blank' href='profile?user='" . $rowUser['Id'] . "'>" . $rowUser['Name'] . " " . $rowUser['Surname'] . "<i class='fw-light text-muted'> - skomentował:</i></a>
                                                         <span class='commentDate text-muted fw-light border-bottom pb-1'>" . $rowComment['Date'] . "</span>
 
+                                            //delete comment button
+                                            if ($rowComment['IdAuthor'] == $_SESSION['loggedUser'] || $_SESSION['permission'] == '2') {
+                                                echo "<a href='deleteComment?commentId=$commentId&estateId=$postIdEstate' class='delete-post' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Usuń komentarz'>&times;</a>";
+                                            } 
 
                                                         <p class='comment-content mt-2 mb-0 text-muted'>" . $rowComment['TextContent'] . "</p>
                                                         ";
@@ -269,7 +276,6 @@
                                         
                                      }
                             echo ('
-                                </div>
                             </div>
                             ');
 
