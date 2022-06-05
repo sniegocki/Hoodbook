@@ -99,7 +99,7 @@
           if (file_exists($avatar_path)) {
               echo ('<img src="img/avatars/'.$_SESSION['loggedUser'].'.png">');
           } else {
-              echo ('<img src="img/avatars/avatar_placeholder.png">');
+              echo ('<img src="img/avatars/avatarPlaceholder.png">');
           }
           ?>
           
